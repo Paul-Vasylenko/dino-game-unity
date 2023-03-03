@@ -67,14 +67,19 @@ namespace Player
 
         public bool IsGrounded()
         {
-            float extraHeight = 5f;
-            RaycastHit2D boxCastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeight, _platformLayerMask);
+            float extraHeight = 0f;
+            // RaycastHit2D boxCastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeight, _platformLayerMask);
+            RaycastHit2D boxCastHit = Physics2D.CapsuleCast(_collider.bounds.center, _collider.bounds.size, 0, 0f, Vector2.down, extraHeight, _platformLayerMask);
             Debug.Log(boxCastHit.collider);
+            if (boxCastHit.collider != null)
+            {
+                Debug.Log(1);
+            }
             return boxCastHit.collider != null;
         }
         private void UpdateJump()
         {
-            if (_rigidbody.velocity.y < 0) // add is grounded
+            if (_rigidbody.velocity.y < 0 && IsGrounded()) // add is grounded
             {
                 ResetJump();
                 return;

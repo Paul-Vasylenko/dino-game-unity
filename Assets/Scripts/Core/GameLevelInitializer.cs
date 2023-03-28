@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using InputReader;
 using Player;
 using UnityEngine;
 

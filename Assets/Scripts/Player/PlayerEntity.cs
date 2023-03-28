@@ -1,5 +1,8 @@
 using System;
+using Core.Animation;
 using Core.Enums;
+using Core.Movement.Controller;
+using Core.Movement.Data;
 using UnityEngine;
 using Core.Tools;
 
@@ -10,11 +13,9 @@ namespace Player
     public class PlayerEntity : MonoBehaviour
     {
         [Header("Animation")] [SerializeField] private Animator _animator;
-        
-        [Header("Horizontal Movement")]
-        [SerializeField] private float _horizontalSpeed;
-        [SerializeField] private Direction _direction;
 
+        [SerializeField] private HorizontalMovementData _horizontalMovementData;
+        
         [Header("Jumping")] 
         [SerializeField] private float _jumpForce;
         [SerializeField] private LayerMask _platformLayerMask;
@@ -24,18 +25,21 @@ namespace Player
         private Rigidbody2D _rigidbody;
         private Collider2D _collider;
         private bool _isJumping;
-        private Vector2 _movement;
         private AnimationType _currentAnimationType;
+
+        private HorizontalMover _horizontalMover;
 
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _collider = GetComponent<CapsuleCollider2D>();
+            _horizontalMover = new HorizontalMover(_rigidbody, _horizontalMovementData);
         }
 
         private void Update()
         {
             UpdateAnimations();
+            UpdateCameras();
 
             if (_isJumping)
             {
@@ -44,21 +48,22 @@ namespace Player
 
         }
 
+        private void UpdateCameras()
+        {
+            foreach (var cameraPair in _cameras.DirectionalCameras)
+            {
+                cameraPair.Value.enabled = cameraPair.Key != _horizontalMover.Direction;
+            }
+        }
+
         private void UpdateAnimations()
         {
             PlayAnimation(AnimationType.Idle, true);
-            PlayAnimation(AnimationType.Run, _movement.magnitude > 0);
+            PlayAnimation(AnimationType.Run, _horizontalMover.IsMoving);
             PlayAnimation(AnimationType.Jump, _isJumping);
         }
 
-        public void MoveHorizontally(float direction)
-        {
-            SetDirection(direction);
-            _movement.x = direction;
-            Vector2 velocity = _rigidbody.velocity;
-            velocity.x = direction * _horizontalSpeed;
-            _rigidbody.velocity = velocity;
-        }
+        public void MoveHorizontally(float direction) => _horizontalMover.MoveHorizontally(direction);
         
         public void Jump()
         {
@@ -66,26 +71,26 @@ namespace Player
             _isJumping = true;
             _rigidbody.AddForce(Vector2.up * _jumpForce);
         }
-        private void SetDirection(float direction)
-        {
-            if (
-                (_direction == Direction.Right && direction < 0)
-                || (_direction == Direction.Left && direction > 0)
-                )
-            {
-                Flip();
-            }   
-        }
-
-        private void Flip()
-        {
-            transform.Rotate(0, 180, 0);
-            _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-            foreach (var cameraPair in _cameras.DirectionalCameras)
-            {
-                cameraPair.Value.enabled = cameraPair.Key != _direction; // if player goes right, we want to use left camera
-            }
-        }
+        // private void SetDirection(float direction)
+        // {
+        //     if (
+        //         (_direction == Direction.Right && direction < 0)
+        //         || (_direction == Direction.Left && direction > 0)
+        //         )
+        //     {
+        //         Flip();
+        //     }   
+        // }
+        //
+        // private void Flip()
+        // {
+        //     transform.Rotate(0, 180, 0);
+        //     _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
+        //     foreach (var cameraPair in _cameras.DirectionalCameras)
+        //     {
+        //         cameraPair.Value.enabled = cameraPair.Key != _direction; // if player goes right, we want to use left camera
+        //     }
+        // }
 
         public bool IsGrounded()
         {

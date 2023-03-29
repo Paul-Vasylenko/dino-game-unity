@@ -5,6 +5,7 @@ using Core.Movement.Controller;
 using Core.Movement.Data;
 using UnityEngine;
 using Core.Tools;
+using StatsSystem;
 
 namespace Player
 {
@@ -24,12 +25,12 @@ namespace Player
         private HorizontalMover _horizontalMover;
         private Jumper _jumper;
 
-        void Start()
+        public void Initialize(IStatValueGiver statValueGiver)
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _collider = GetComponent<CapsuleCollider2D>();
-            _horizontalMover = new HorizontalMover(_rigidbody, _horizontalMovementData);
-            _jumper = new Jumper(_rigidbody, _jumpData, _collider);
+            _horizontalMover = new HorizontalMover(_rigidbody, _horizontalMovementData, statValueGiver);
+            _jumper = new Jumper(_rigidbody, _jumpData, _collider, statValueGiver);
         }
 
         private void Update()

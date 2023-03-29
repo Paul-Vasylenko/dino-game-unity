@@ -1,4 +1,6 @@
 ﻿using Core.Movement.Data;
+using StatsSystem;
+using StatsSystem.Enum;
 using UnityEngine;
 
 namespace Core.Movement.Controller
@@ -8,12 +10,14 @@ namespace Core.Movement.Controller
         private readonly Rigidbody2D _rigidbody;
         private readonly JumpData _jumpData;
         private readonly Collider2D _collider;
+        private readonly IStatValueGiver _statValueGiver;
 
-        public Jumper(Rigidbody2D rigidbody, JumpData jumpData, Collider2D collider)
+        public Jumper(Rigidbody2D rigidbody, JumpData jumpData, Collider2D collider, IStatValueGiver statValueGiver)
         {
             _rigidbody = rigidbody;
             _jumpData = jumpData;
             _collider = collider;
+            _statValueGiver = statValueGiver;
         }
         
         public bool IsJumping { get; private set; }
@@ -21,7 +25,7 @@ namespace Core.Movement.Controller
         {
             if (IsJumping) return;
             IsJumping = true;
-            _rigidbody.AddForce(Vector2.up * _jumpData.JumpForce);
+            _rigidbody.AddForce(Vector2.up * _statValueGiver.GetStatValue(StatType.JumpForce));
         }
         
         public void UpdateJump()

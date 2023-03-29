@@ -34,6 +34,7 @@ namespace Core
                 _gameUIInputView,
                 _externalDevicesInputReader
             });
+            _disposables.Add(_playerSystem);
         }
 
         private void OnDestroy()

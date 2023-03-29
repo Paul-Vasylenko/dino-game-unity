@@ -12,28 +12,24 @@ namespace Player
     [RequireComponent(typeof(CapsuleCollider2D))]
     public class PlayerEntity : MonoBehaviour
     {
-        [Header("Animation")] [SerializeField] private Animator _animator;
+        [Header("Animation")] [SerializeField] private AnimationController _animator;
 
         [SerializeField] private HorizontalMovementData _horizontalMovementData;
-        
-        [Header("Jumping")] 
-        [SerializeField] private float _jumpForce;
-        [SerializeField] private LayerMask _platformLayerMask;
-
+        [SerializeField] private JumpData _jumpData;
         [SerializeField] private DirectionalCameraPair _cameras;
         
         private Rigidbody2D _rigidbody;
         private Collider2D _collider;
-        private bool _isJumping;
-        private AnimationType _currentAnimationType;
 
         private HorizontalMover _horizontalMover;
+        private Jumper _jumper;
 
         void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _collider = GetComponent<CapsuleCollider2D>();
             _horizontalMover = new HorizontalMover(_rigidbody, _horizontalMovementData);
+            _jumper = new Jumper(_rigidbody, _jumpData, _collider);
         }
 
         private void Update()
@@ -41,11 +37,10 @@ namespace Player
             UpdateAnimations();
             UpdateCameras();
 
-            if (_isJumping)
+            if (_jumper.IsJumping)
             {
-                UpdateJump();
+                _jumper.UpdateJump();
             }
-
         }
 
         private void UpdateCameras()
@@ -58,82 +53,13 @@ namespace Player
 
         private void UpdateAnimations()
         {
-            PlayAnimation(AnimationType.Idle, true);
-            PlayAnimation(AnimationType.Run, _horizontalMover.IsMoving);
-            PlayAnimation(AnimationType.Jump, _isJumping);
+            _animator.PlayAnimation(AnimationType.Idle, true);
+            _animator.PlayAnimation(AnimationType.Run, _horizontalMover.IsMoving);
+            _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
         }
 
         public void MoveHorizontally(float direction) => _horizontalMover.MoveHorizontally(direction);
-        
-        public void Jump()
-        {
-            if (_isJumping) return;
-            _isJumping = true;
-            _rigidbody.AddForce(Vector2.up * _jumpForce);
-        }
-        // private void SetDirection(float direction)
-        // {
-        //     if (
-        //         (_direction == Direction.Right && direction < 0)
-        //         || (_direction == Direction.Left && direction > 0)
-        //         )
-        //     {
-        //         Flip();
-        //     }   
-        // }
-        //
-        // private void Flip()
-        // {
-        //     transform.Rotate(0, 180, 0);
-        //     _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
-        //     foreach (var cameraPair in _cameras.DirectionalCameras)
-        //     {
-        //         cameraPair.Value.enabled = cameraPair.Key != _direction; // if player goes right, we want to use left camera
-        //     }
-        // }
 
-        public bool IsGrounded()
-        {
-            float extraHeight = 0f;
-            RaycastHit2D boxCastHit = Physics2D.CapsuleCast(_collider.bounds.center, _collider.bounds.size, 0, 0f, Vector2.down, extraHeight, _platformLayerMask);
-            return boxCastHit.collider != null;
-        }
-        private void UpdateJump()
-        {
-            if (_rigidbody.velocity.y < 0 && IsGrounded()) // add is grounded
-            {
-                ResetJump();
-                return;
-            }
-        }
-        
-        private void ResetJump()
-        {
-            _isJumping = false;            
-
-        }
-
-        private void PlayAnimation(AnimationType animationType, bool active)
-        {
-            if (!active)
-            {
-                if (_currentAnimationType == AnimationType.Idle || _currentAnimationType != animationType)
-                    return; // if we try to disable Idle animation or wrong animation
-
-                _currentAnimationType = AnimationType.Idle;
-                PlayAnimation(_currentAnimationType);
-                return;
-            }
-            if (_currentAnimationType > animationType)
-                return; // new animation priority is less than the animation playing now
-
-            _currentAnimationType = animationType;
-            PlayAnimation(_currentAnimationType);
-        }
-
-        private void PlayAnimation(AnimationType animationType)
-        {
-            _animator.SetInteger(nameof(AnimationType), (int)animationType);
-        }
+        public void Jump() => _jumper.Jump();
     }
 }

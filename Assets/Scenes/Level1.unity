@@ -3340,7 +3340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.8057184, y: 1.2, z: -10}
+  m_LocalPosition: {x: -3.9780035, y: 1.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95740,7 +95740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950678316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.8057184, y: 1.2, z: -10}
+  m_LocalPosition: {x: -3.9780035, y: 1.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95904,6 +95904,7 @@ GameObject:
   - component: {fileID: 1250907288}
   - component: {fileID: 1250907287}
   - component: {fileID: 1250907289}
+  - component: {fileID: 1250907290}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -95971,7 +95972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250907282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.7, y: 1.2, z: 0}
+  m_LocalPosition: {x: -9.811, y: 1.223, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -96027,8 +96028,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0035b0dc8d47f6bee15a93a5c0aad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerEntity: {fileID: 1250907288}
-  _horizontalDirection: 0
 --- !u!114 &1250907288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96041,13 +96040,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98cee70abdfd3542a19b575a916917f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1250907289}
-  _horizontalSpeed: 8
-  _direction: 0
-  _jumpForce: 800
-  _platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
+  _animator: {fileID: 1250907290}
+  _horizontalMovementData:
+    <Direction>k__BackingField: 0
+  _jumpData:
+    <PlatformLayerMask>k__BackingField:
+      serializedVersion: 2
+      m_Bits: 64
   _cameras:
     _rightCamera: {fileID: 1726334984}
     _leftCamera: {fileID: 950678317}
@@ -96071,6 +96070,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &1250907290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250907282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00767d2ccba4e2ca52ef53ad27091c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278695302
 GameObject:
   m_ObjectHideFlags: 3

@@ -9,6 +9,8 @@ namespace Player
     [RequireComponent(typeof(CapsuleCollider2D))]
     public class PlayerEntity : MonoBehaviour
     {
+        [Header("Animation")] [SerializeField] private Animator _animator;
+        
         [Header("Horizontal Movement")]
         [SerializeField] private float _horizontalSpeed;
         [SerializeField] private Direction _direction;
@@ -22,6 +24,8 @@ namespace Player
         private Rigidbody2D _rigidbody;
         private Collider2D _collider;
         private bool _isJumping;
+        private Vector2 _movement;
+        private AnimationType _currentAnimationType;
 
         void Start()
         {
@@ -31,19 +35,26 @@ namespace Player
 
         private void Update()
         {
+            UpdateAnimations();
+
             if (_isJumping)
             {
                 UpdateJump();
             }
+
         }
 
-        private void FixedUpdate()
+        private void UpdateAnimations()
         {
+            PlayAnimation(AnimationType.Idle, true);
+            PlayAnimation(AnimationType.Run, _movement.magnitude > 0);
+            PlayAnimation(AnimationType.Jump, _isJumping);
         }
 
         public void MoveHorizontally(float direction)
         {
             SetDirection(direction);
+            _movement.x = direction;
             Vector2 velocity = _rigidbody.velocity;
             velocity.x = direction * _horizontalSpeed;
             _rigidbody.velocity = velocity;
@@ -93,7 +104,31 @@ namespace Player
         
         private void ResetJump()
         {
-            _isJumping = false;
+            _isJumping = false;            
+
+        }
+
+        private void PlayAnimation(AnimationType animationType, bool active)
+        {
+            if (!active)
+            {
+                if (_currentAnimationType == AnimationType.Idle || _currentAnimationType != animationType)
+                    return; // if we try to disable Idle animation or wrong animation
+
+                _currentAnimationType = AnimationType.Idle;
+                PlayAnimation(_currentAnimationType);
+                return;
+            }
+            if (_currentAnimationType > animationType)
+                return; // new animation priority is less than the animation playing now
+
+            _currentAnimationType = animationType;
+            PlayAnimation(_currentAnimationType);
+        }
+
+        private void PlayAnimation(AnimationType animationType)
+        {
+            _animator.SetInteger(nameof(AnimationType), (int)animationType);
         }
     }
 }

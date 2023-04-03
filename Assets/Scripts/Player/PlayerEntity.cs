@@ -1,5 +1,7 @@
 using System;
+using Core.Enums;
 using UnityEngine;
+using Core.Tools;
 
 namespace Player
 {
@@ -9,12 +11,14 @@ namespace Player
     {
         [Header("Horizontal Movement")]
         [SerializeField] private float _horizontalSpeed;
-        [SerializeField] private bool _faceRight;
+        [SerializeField] private Direction _direction;
 
         [Header("Jumping")] 
         [SerializeField] private float _jumpForce;
         [SerializeField] private LayerMask _platformLayerMask;
 
+        [SerializeField] private DirectionalCameraPair _cameras;
+        
         private Rigidbody2D _rigidbody;
         private Collider2D _collider;
         private bool _isJumping;
@@ -53,7 +57,10 @@ namespace Player
         }
         private void SetDirection(float direction)
         {
-            if ((_faceRight && direction < 0) || (!_faceRight && direction > 0))
+            if (
+                (_direction == Direction.Right && direction < 0)
+                || (_direction == Direction.Left && direction > 0)
+                )
             {
                 Flip();
             }   
@@ -62,19 +69,22 @@ namespace Player
         private void Flip()
         {
             transform.Rotate(0, 180, 0);
-            _faceRight = !_faceRight;
+            _direction = _direction == Direction.Left ? Direction.Right : Direction.Left;
+            foreach (var cameraPair in _cameras.DirectionalCameras)
+            {
+                cameraPair.Value.enabled = cameraPair.Key != _direction; // if player goes right, we want to use left camera
+            }
         }
 
         public bool IsGrounded()
         {
-            float extraHeight = 5f;
-            RaycastHit2D boxCastHit = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size, 0f, Vector2.down, extraHeight, _platformLayerMask);
-            Debug.Log(boxCastHit.collider);
+            float extraHeight = 0f;
+            RaycastHit2D boxCastHit = Physics2D.CapsuleCast(_collider.bounds.center, _collider.bounds.size, 0, 0f, Vector2.down, extraHeight, _platformLayerMask);
             return boxCastHit.collider != null;
         }
         private void UpdateJump()
         {
-            if (_rigidbody.velocity.y < 0) // add is grounded
+            if (_rigidbody.velocity.y < 0 && IsGrounded()) // add is grounded
             {
                 ResetJump();
                 return;

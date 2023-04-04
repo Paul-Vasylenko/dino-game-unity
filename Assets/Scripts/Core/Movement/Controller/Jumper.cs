@@ -12,6 +12,7 @@ namespace Core.Movement.Controller
         private readonly Collider2D _collider;
         private readonly IStatValueGiver _statValueGiver;
         private readonly float _rayHeight = 1.2f;
+        private readonly float _minVelocityAfterJump = 0.01f;
 
         public Jumper(Rigidbody2D rigidbody, JumpData jumpData, Collider2D collider, IStatValueGiver statValueGiver)
         {
@@ -31,7 +32,7 @@ namespace Core.Movement.Controller
 
         public void UpdateJump()
         {
-            if (_rigidbody.velocity.y < 0 && IsGrounded()) // add is grounded
+            if (_rigidbody.velocity.y < _minVelocityAfterJump && IsGrounded())
             {
                 ResetJump();
                 return;

@@ -11,6 +11,7 @@ namespace Core.Movement.Controller
         private readonly JumpData _jumpData;
         private readonly Collider2D _collider;
         private readonly IStatValueGiver _statValueGiver;
+        private readonly float _rayHeight = 1.2f;
 
         public Jumper(Rigidbody2D rigidbody, JumpData jumpData, Collider2D collider, IStatValueGiver statValueGiver)
         {
@@ -19,7 +20,7 @@ namespace Core.Movement.Controller
             _collider = collider;
             _statValueGiver = statValueGiver;
         }
-        
+
         public bool IsJumping { get; private set; }
         public void Jump()
         {
@@ -27,7 +28,7 @@ namespace Core.Movement.Controller
             IsJumping = true;
             _rigidbody.AddForce(Vector2.up * _statValueGiver.GetStatValue(StatType.JumpForce));
         }
-        
+
         public void UpdateJump()
         {
             if (_rigidbody.velocity.y < 0 && IsGrounded()) // add is grounded
@@ -36,14 +37,9 @@ namespace Core.Movement.Controller
                 return;
             }
         }
-        
-        private bool IsGrounded()
-        {
-            float extraHeight = 0f;
-            RaycastHit2D boxCastHit = Physics2D.CapsuleCast(_collider.bounds.center, _collider.bounds.size, 0, 0f, Vector2.down, extraHeight, _jumpData.PlatformLayerMask);
-            return boxCastHit.collider != null;
-        }
-        
+
+        private bool IsGrounded() => Physics2D.Raycast(_rigidbody.transform.position, Vector2.down, _rayHeight, _jumpData.PlatformLayerMask.value);
+
         private void ResetJump()
         {
             IsJumping = false;

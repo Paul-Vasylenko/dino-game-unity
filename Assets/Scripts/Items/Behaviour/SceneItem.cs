@@ -59,7 +59,6 @@ namespace Items.Behaviour
         private void Awake()
         {
             _button.onClick.AddListener(() => ItemClicked?.Invoke(this));
-            PlayDrop(new Vector3(0.2007137f, -0.4064147f, 0.03689937f)); ;
         }
         private void OnMouseDown() => ItemClicked?.Invoke(this);
 

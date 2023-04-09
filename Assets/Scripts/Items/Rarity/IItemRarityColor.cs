@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using Items.Enum;
+﻿using Items.Enum;
+using UnityEngine;
 
 namespace Items.Rarity
 {

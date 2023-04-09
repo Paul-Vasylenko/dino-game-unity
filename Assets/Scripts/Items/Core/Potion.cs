@@ -1,4 +1,5 @@
-﻿using Items.Data;
+﻿using System;
+using Items.Data;
 using StatsSystem;
 
 namespace Items.Core
@@ -6,9 +7,8 @@ namespace Items.Core
     public class Potion : Item
     {
         private readonly StatsController _statsController;
-        private StatChangingItemDescriptor _itemDescriptor;
         private int _amount;
-        public override int Amount => _amount;
+        private readonly StatChangingItemDescriptor _itemDescriptor;
 
         public Potion(ItemDescriptor descriptor, StatsController statsController) : base(descriptor)
         {
@@ -16,6 +16,8 @@ namespace Items.Core
             _statsController = statsController;
             _amount = 1;
         }
+
+        public override int Amount => _amount;
 
         public override void Use()
         {
@@ -28,12 +30,17 @@ namespace Items.Core
 
         private void Destroy()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        public void AddToStack()
+        {
+            _amount += Amount;
         }
 
         public void AddToStack(int amount)
         {
-            _amount += Amount;
+            _amount += amount;
         }
     }
 }

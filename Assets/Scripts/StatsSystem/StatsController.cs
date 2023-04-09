@@ -9,8 +9,8 @@ namespace StatsSystem
 {
     public class StatsController : IDisposable, IStatValueGiver
     {
-        private readonly List<Stat> _currentStats;
         private readonly List<StatModificator> _activeModificators;
+        private readonly List<Stat> _currentStats;
 
         public StatsController(List<Stat> currentStats)
         {
@@ -19,7 +19,15 @@ namespace StatsSystem
             ProjectUpdater.Instance.UpdateCalled += OnUpdate;
         }
 
-        public float GetStatValue(StatType statType) => _currentStats.Find(stat => stat.Type == statType);
+        public void Dispose()
+        {
+            ProjectUpdater.Instance.UpdateCalled -= OnUpdate;
+        }
+
+        public float GetStatValue(StatType statType)
+        {
+            return _currentStats.Find(stat => stat.Type == statType);
+        }
 
         public void ProcessModificator(StatModificator modificator)
         {
@@ -49,7 +57,6 @@ namespace StatsSystem
                 _activeModificators.Add(tempModificator);
             }
         }
-        public void Dispose() => ProjectUpdater.Instance.UpdateCalled -= OnUpdate;
 
         private void OnUpdate()
         {
@@ -58,11 +65,7 @@ namespace StatsSystem
             var expiredModificators =
                 _activeModificators.Where(modificator => modificator.StartTime + modificator.Duration <= Time.time);
 
-            foreach (var expiredModificator in expiredModificators)
-            {
-                ProcessModificator(expiredModificator);
-            }
+            foreach (var expiredModificator in expiredModificators) ProcessModificator(expiredModificator);
         }
-
     }
 }

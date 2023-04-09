@@ -1,11 +1,9 @@
-using System;
 using Core.Animation;
-using Core.Enums;
 using Core.Movement.Controller;
 using Core.Movement.Data;
-using UnityEngine;
 using Core.Tools;
 using StatsSystem;
+using UnityEngine;
 
 namespace Player
 {
@@ -18,12 +16,20 @@ namespace Player
         [SerializeField] private HorizontalMovementData _horizontalMovementData;
         [SerializeField] private JumpData _jumpData;
         [SerializeField] private DirectionalCameraPair _cameras;
-        
-        private Rigidbody2D _rigidbody;
         private Collider2D _collider;
 
         private HorizontalMover _horizontalMover;
         private Jumper _jumper;
+
+        private Rigidbody2D _rigidbody;
+
+        private void Update()
+        {
+            UpdateAnimations();
+            UpdateCameras();
+
+            if (_jumper.IsJumping) _jumper.UpdateJump();
+        }
 
         public void Initialize(IStatValueGiver statValueGiver)
         {
@@ -33,23 +39,10 @@ namespace Player
             _jumper = new Jumper(_rigidbody, _jumpData, _collider, statValueGiver);
         }
 
-        private void Update()
-        {
-            UpdateAnimations();
-            UpdateCameras();
-
-            if (_jumper.IsJumping)
-            {
-                _jumper.UpdateJump();
-            }
-        }
-
         private void UpdateCameras()
         {
             foreach (var cameraPair in _cameras.DirectionalCameras)
-            {
                 cameraPair.Value.enabled = cameraPair.Key != _horizontalMover.Direction;
-            }
         }
 
         private void UpdateAnimations()
@@ -59,8 +52,14 @@ namespace Player
             _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
         }
 
-        public void MoveHorizontally(float direction) => _horizontalMover.MoveHorizontally(direction);
+        public void MoveHorizontally(float direction)
+        {
+            _horizontalMover.MoveHorizontally(direction);
+        }
 
-        public void Jump() => _jumper.Jump();
+        public void Jump()
+        {
+            _jumper.Jump();
+        }
     }
 }

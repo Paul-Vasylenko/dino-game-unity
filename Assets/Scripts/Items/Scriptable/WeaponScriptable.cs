@@ -7,7 +7,7 @@ namespace Items.Scriptable
     public class WeaponScriptable : BaseItemScriptable
     {
         [SerializeField] private WeaponDescriptor _weaponDescriptor;
-        
+
         public override ItemDescriptor ItemDescriptor => _weaponDescriptor;
     }
 }

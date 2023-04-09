@@ -7,9 +7,6 @@ namespace InputReader
     {
         [SerializeField] private Joystick _joystick;
         [SerializeField] private Button _jumpButton;
-        
-        public float HorizontalDirection => _joystick.Horizontal;
-        public bool Jump { get; private set;  }
 
         private void Awake()
         {
@@ -20,7 +17,10 @@ namespace InputReader
         {
             _jumpButton.onClick.RemoveAllListeners();
         }
-        
+
+        public float HorizontalDirection => _joystick.Horizontal;
+        public bool Jump { get; private set; }
+
         public void ResetOneTimeActions()
         {
             Jump = false;

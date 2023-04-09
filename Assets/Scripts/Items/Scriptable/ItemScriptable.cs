@@ -7,11 +7,12 @@ namespace Items.Scriptable
     public class ItemScriptable : BaseItemScriptable
     {
         [SerializeField] private StatChangingItemDescriptor _itemDescriptor;
-        public override ItemDescriptor ItemDescriptor => _itemDescriptor;
-        
+
         public ItemScriptable(StatChangingItemDescriptor descriptor)
         {
             _itemDescriptor = descriptor;
         }
+
+        public override ItemDescriptor ItemDescriptor => _itemDescriptor;
     }
 }

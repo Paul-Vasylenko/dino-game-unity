@@ -12,13 +12,13 @@ namespace Core
         [SerializeField] private PlayerEntity _playerEntity;
         [SerializeField] private GameUIInputView _gameUIInputView;
 
+        private List<IDisposable> _disposables;
+
         private ExternalDevicesInputReader _externalDevicesInputReader;
+
+        private bool _onPause;
         private PlayerSystem _playerSystem;
         private ProjectUpdater _projectUpdater;
-
-        private List<IDisposable> _disposables;
-        
-        private bool _onPause;
 
         private void Awake()
         {

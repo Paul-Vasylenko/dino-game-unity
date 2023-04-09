@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Core.Animation
 {
@@ -17,6 +16,5 @@ namespace Core.Animation
         {
             _animator.SetInteger(nameof(AnimationType), (int)animationType);
         }
-
     }
 }

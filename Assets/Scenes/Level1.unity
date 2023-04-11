@@ -3340,7 +3340,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7132926, y: 1.2, z: -10}
+  m_LocalPosition: {x: -4.14546, y: 1.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -95740,7 +95740,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950678316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.7132926, y: 1.2, z: -10}
+  m_LocalPosition: {x: -4.14546, y: 1.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -95902,7 +95902,6 @@ GameObject:
   - component: {fileID: 1250907285}
   - component: {fileID: 1250907286}
   - component: {fileID: 1250907288}
-  - component: {fileID: 1250907287}
   - component: {fileID: 1250907289}
   - component: {fileID: 1250907290}
   m_Layer: 8
@@ -96016,18 +96015,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0.047470093, y: -0.16026771}
   m_Size: {x: 1.5252991, y: 1.5610144}
   m_Direction: 0
---- !u!114 &1250907287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1250907282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a0035b0dc8d47f6bee15a93a5c0aad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1250907288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96430,6 +96417,10 @@ PrefabInstance:
       propertyPath: _dropAnimationDuration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8488936512200042736, guid: 8e64e7a38bf093148bd0c92999ddf112, type: 3}
+      propertyPath: <InteractionDistance>k__BackingField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9063211913136192942, guid: 8e64e7a38bf093148bd0c92999ddf112, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -96471,6 +96462,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerEntity: {fileID: 1250907288}
   _gameUIInputView: {fileID: 525357210}
+  _rarityDescriptorsStorage: {fileID: 11400000, guid: 3ab2b7174ff72dc4a993d2142ef64769, type: 2}
+  _whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _itemsStorage: {fileID: 11400000, guid: 3d82c5ab842e271428709df55024e661, type: 2}
 --- !u!4 &1713991528
 Transform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ namespace Player
         private readonly List<IDisposable> _disposables;
         private readonly PlayerBrain _playerBrain;
         private readonly PlayerEntity _playerEntity;
-        private readonly StatsController _statsController;
+        public StatsController StatsController { get; }
 
         public PlayerSystem(PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
         {
@@ -21,11 +21,11 @@ namespace Player
             var statStorage = Resources.Load<StatsStorage>($"Player/{nameof(StatsStorage)}");
             // Next line is needed to work with stats, not with their links
             var stats = statStorage.Stats.Select(stat => stat.GetCopy()).ToList();
-            _statsController = new StatsController(stats);
-            _disposables.Add(_statsController);
+            StatsController = new StatsController(stats);
+            _disposables.Add(StatsController);
 
             _playerEntity = playerEntity;
-            _playerEntity.Initialize(_statsController);
+            _playerEntity.Initialize(StatsController);
             _playerBrain = new PlayerBrain(_playerEntity, inputSources);
             _disposables.Add(_playerBrain);
         }

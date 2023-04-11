@@ -13,10 +13,11 @@ namespace Items
         private Transform _transform;
         private List<IItemRarityColor> _colors;
         private LayerMask _whatIsPlayer;
+        private ItemsFactory _itemsFactory;
         
         private Dictionary<SceneItem, Item> _itemsOnScene;
         
-        public ItemsSystem(List<IItemRarityColor> colors, LayerMask whatIsPlayer)
+        public ItemsSystem(List<IItemRarityColor> colors, ItemsFactory itemsFactory, LayerMask whatIsPlayer)
         {
             _sceneItem = Resources.Load<SceneItem>($"{nameof(ItemsSystem)}/{nameof(SceneItem)}");
             _itemsOnScene = new Dictionary<SceneItem, Item>();
@@ -25,13 +26,12 @@ namespace Items
             _transform = gameObject.transform;
             _colors = colors;
             _whatIsPlayer = whatIsPlayer;
+            _itemsFactory = itemsFactory;
         }
 
-        public void DropItem(ItemDescriptor descriptor, Vector2 position)
-        {
-            
-        }
-        
+        public void DropItem(ItemDescriptor descriptor, Vector2 position) =>
+            DropItem(_itemsFactory.CreateItem(descriptor), position);
+
         private void DropItem(Item item, Vector2 position)
         {
             SceneItem sceneItem = Object.Instantiate(_sceneItem, _transform);
@@ -46,6 +46,7 @@ namespace Items
         {
             Collider2D player = 
                 Physics2D.OverlapCircle(sceneItem.Position, sceneItem.InteractionDistance, _whatIsPlayer);
+            Debug.Log("In");
             if (player == null)
                 return;
 

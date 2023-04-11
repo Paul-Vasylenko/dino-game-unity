@@ -4,6 +4,7 @@
     {
         None = 0,
         Knife = 1,
-        Bow = 2
+        Bow = 2,
+        Spear = 3
     }
 }

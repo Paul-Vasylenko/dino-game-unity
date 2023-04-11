@@ -21,6 +21,9 @@ namespace Items.Behaviour
 
         private Sequence _sequence;
 
+        [field: SerializeField] public float InteractionDistance { get; private set; }
+
+        public Vector2 Position => _sprite.transform.position;
         public event Action<SceneItem> ItemClicked;
 
         private bool _isTextEnabled = true;
@@ -61,6 +64,11 @@ namespace Items.Behaviour
             _button.onClick.AddListener(() => ItemClicked?.Invoke(this));
         }
         private void OnMouseDown() => ItemClicked?.Invoke(this);
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(_sprite.transform.position, InteractionDistance);
+        }
 
         private void OnDestroy() => _button.onClick.RemoveAllListeners();
     }

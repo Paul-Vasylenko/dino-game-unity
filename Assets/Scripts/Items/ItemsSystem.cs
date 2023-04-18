@@ -46,7 +46,6 @@ namespace Items
         {
             Collider2D player = 
                 Physics2D.OverlapCircle(sceneItem.Position, sceneItem.InteractionDistance, _whatIsPlayer);
-            Debug.Log("In");
             if (player == null)
                 return;
 

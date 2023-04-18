@@ -69,7 +69,8 @@ MonoBehaviour:
   _canvas: {fileID: 6492016940784032033}
   _dropAnimationDuration: 1
   _dropRotation: 540
-  _dropRadius: 2
+  _dropRadius: 1
+  <InteractionDistance>k__BackingField: 2
 --- !u!1 &2802497370373087329
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,9 +10,9 @@ namespace Items
 {
     public class DropGenerator 
     {
-        private PlayerEntity _playerEntity;
-        private List<ItemDescriptor> _itemsDescriptors;
-        private ItemsSystem _itemsSystem;
+        private readonly PlayerEntity _playerEntity;
+        private readonly List<ItemDescriptor> _itemsDescriptors;
+        private readonly ItemsSystem _itemsSystem;
         
         public DropGenerator(List<ItemDescriptor> itemDescriptors, PlayerEntity playerEntity, ItemsSystem itemsSystem)
         {
@@ -25,12 +25,11 @@ namespace Items
         private void DropRandomItem(ItemRarity rarity)
         {
             List<ItemDescriptor> items = _itemsDescriptors.Where(item => item.ItemRarity == rarity).ToList();
-            if (items.Count() > 0)
-            {
-                ItemDescriptor itemDescriptor = items[Random.Range(0, items.Count())];
-                _itemsSystem.DropItem(itemDescriptor, _playerEntity.transform.position + Vector3.one);
-            }
+            if (!items.Any()) return;
             
+            ItemDescriptor itemDescriptor = items[Random.Range(0, items.Count())];
+            _itemsSystem.DropItem(itemDescriptor, _playerEntity.transform.position + Vector3.one);
+
         }
         
         private ItemRarity GetDropRarity()

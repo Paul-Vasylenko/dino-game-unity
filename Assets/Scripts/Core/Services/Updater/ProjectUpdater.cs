@@ -6,9 +6,6 @@ namespace Core.Services.Updater
     public class ProjectUpdater : MonoBehaviour, IProjectUpdater
     {
         public static IProjectUpdater Instance;
-        public event Action UpdateCalled;
-        public event Action FixedUpdateCalled;
-        public event Action LateUpdateCalled;
 
         private bool _isPaused;
 
@@ -37,17 +34,21 @@ namespace Core.Services.Updater
             if (IsPaused) return;
             UpdateCalled?.Invoke();
         }
-        
+
         private void FixedUpdate()
         {
             if (IsPaused) return;
             FixedUpdateCalled?.Invoke();
         }
-        
+
         private void LateUpdate()
         {
             if (IsPaused) return;
             LateUpdateCalled?.Invoke();
         }
+
+        public event Action UpdateCalled;
+        public event Action FixedUpdateCalled;
+        public event Action LateUpdateCalled;
     }
 }

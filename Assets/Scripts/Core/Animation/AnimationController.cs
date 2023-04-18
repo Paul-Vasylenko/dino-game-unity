@@ -17,6 +17,7 @@ namespace Core.Animation
                 PlayAnimation(_currentAnimationType);
                 return;
             }
+
             if (_currentAnimationType > animationType)
                 return; // new animation priority is less than the animation playing now
 

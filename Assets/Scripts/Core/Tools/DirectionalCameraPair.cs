@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cinemachine;
-using UnityEngine;
 using Core.Enums;
+using UnityEngine;
 
 namespace Core.Tools
 {
@@ -24,7 +24,7 @@ namespace Core.Tools
                 _directionalCameras = new Dictionary<Direction, CinemachineVirtualCamera>
                 {
                     { Direction.Right, _rightCamera },
-                    { Direction.Left, _leftCamera },
+                    { Direction.Left, _leftCamera }
                 };
 
                 return _directionalCameras;

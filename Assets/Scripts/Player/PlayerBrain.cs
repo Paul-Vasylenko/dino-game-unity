@@ -8,15 +8,17 @@ namespace Player
 {
     public class PlayerBrain : IDisposable
     {
-        private readonly PlayerEntity _playerEntity;
         private readonly List<IEntityInputSource> _inputSources;
-        
+        private readonly PlayerEntity _playerEntity;
+
         public PlayerBrain(PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
         {
             _playerEntity = playerEntity;
             _inputSources = inputSources;
             ProjectUpdater.Instance.FixedUpdateCalled += OnFixedUpdate;
         }
+
+        private bool IsJump => _inputSources.Any(source => source.Jump);
 
         public void Dispose()
         {
@@ -30,17 +32,14 @@ namespace Player
             if (IsJump)
                 _playerEntity.Jump();
 
-            foreach (var inputSource in _inputSources)
-            {
-                inputSource.ResetOneTimeActions();
-            }
+            foreach (var inputSource in _inputSources) inputSource.ResetOneTimeActions();
         }
-        
+
         private float GetHorizontalDirection()
         {
             foreach (var inputSource in _inputSources)
             {
-                if (inputSource.HorizontalDirection == 0) 
+                if (inputSource.HorizontalDirection == 0)
                     continue;
 
                 return inputSource.HorizontalDirection;
@@ -48,7 +47,5 @@ namespace Player
 
             return 0;
         }
-
-        private bool IsJump => _inputSources.Any(source => source.Jump);
     }
 }

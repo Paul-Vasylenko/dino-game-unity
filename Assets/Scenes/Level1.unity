@@ -96569,7 +96569,7 @@ MonoBehaviour:
   _rarityDescriptorsStorage: {fileID: 11400000, guid: 3ab2b7174ff72dc4a993d2142ef64769, type: 2}
   _whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   _itemsStorage: {fileID: 11400000, guid: 3d82c5ab842e271428709df55024e661, type: 2}
 --- !u!4 &1713991528
 Transform:

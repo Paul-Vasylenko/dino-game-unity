@@ -9,15 +9,16 @@ namespace Items
 {
     public class ItemsSystem
     {
-        private SceneItem _sceneItem;
-        private Transform _transform;
-        private List<IItemRarityColor> _colors;
-        private LayerMask _whatIsPlayer;
-        private ItemsFactory _itemsFactory;
+        private readonly SceneItem _sceneItem;
+        private readonly Transform _transform;
+        private readonly List<IItemRarityColor> _colors;
+        private readonly LayerMask _whatIsPlayer;
+        private readonly ItemsFactory _itemsFactory;
+        private readonly Inventory _inventory;
         
-        private Dictionary<SceneItem, Item> _itemsOnScene;
+        private readonly Dictionary<SceneItem, Item> _itemsOnScene;
         
-        public ItemsSystem(List<IItemRarityColor> colors, ItemsFactory itemsFactory, LayerMask whatIsPlayer)
+        public ItemsSystem(List<IItemRarityColor> colors, ItemsFactory itemsFactory, LayerMask whatIsPlayer, Inventory inventory)
         {
             _sceneItem = Resources.Load<SceneItem>($"{nameof(ItemsSystem)}/{nameof(SceneItem)}");
             _itemsOnScene = new Dictionary<SceneItem, Item>();
@@ -27,6 +28,8 @@ namespace Items
             _colors = colors;
             _whatIsPlayer = whatIsPlayer;
             _itemsFactory = itemsFactory;
+            _inventory = inventory;
+            _inventory.ItemDropped += DropItem;
         }
 
         public void DropItem(ItemDescriptor descriptor, Vector2 position) =>
@@ -46,11 +49,23 @@ namespace Items
         {
             Collider2D player = 
                 Physics2D.OverlapCircle(sceneItem.Position, sceneItem.InteractionDistance, _whatIsPlayer);
+            Debug.Log(123);
+
             if (player == null)
                 return;
+            Debug.Log(123);
 
             Item item = _itemsOnScene[sceneItem];
-            Debug.Log($"Adding item {item.Descriptor.ItemId} to inventory");
+            Debug.Log(_inventory.GetBackpackSize());
+            Debug.Log(_inventory.InventorySize);
+
+            if (_inventory.GetBackpackSize() >= _inventory.InventorySize) return;
+            Debug.Log(123);
+
+            if (!_inventory.TryAddToInventory(item))
+                return;
+            
+            Debug.Log(_inventory.BackpackItems.Count);
             _itemsOnScene.Remove(sceneItem);
             sceneItem.ItemClicked -= TryPickItem;
             Object.Destroy(sceneItem.gameObject);

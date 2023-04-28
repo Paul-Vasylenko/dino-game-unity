@@ -3,6 +3,8 @@
     public enum ItemId
     {
         None = 0,
-        Crown = 1
+        HealthPotion = 1,
+        SpeedPotion = 2,
+        JumpPotion = 3,
     }
 }

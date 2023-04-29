@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core.Services.Updater;
 using InputReader;
 using Items;
 using StatsSystem;
@@ -12,6 +13,8 @@ namespace Player
     {
         private readonly List<IDisposable> _disposables;
         private readonly PlayerBrain _playerBrain;
+
+        private readonly ProjectUpdater _projectUpdater;
         private readonly PlayerEntity _playerEntity;
         public StatsController StatsController { get; }
         public Inventory Inventory { get; }
@@ -31,7 +34,7 @@ namespace Player
             _playerBrain = new PlayerBrain(_playerEntity, inputSources);
             _disposables.Add(_playerBrain);
 
-            Inventory = new Inventory(null, null, _playerEntity.transform);
+            Inventory = new Inventory(null, null, _playerEntity.transform, new EquipmentConditionChecker());
         }
 
         public void Dispose()

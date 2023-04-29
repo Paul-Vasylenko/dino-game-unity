@@ -58,8 +58,6 @@ namespace Items
 
             Item item = _itemsOnScene[sceneItem];
 
-            if (_inventory.GetBackpackSize() >= _inventory.InventorySize) return;
-
             if (!_inventory.TryAddToInventory(item))
                 return;
 

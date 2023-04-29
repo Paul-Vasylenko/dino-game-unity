@@ -36,11 +36,11 @@ namespace Core
                 _projectUpdater = ProjectUpdater.Instance as ProjectUpdater;
 
             _externalDevicesInputReader = new ExternalDevicesInputReader();
-            _playerSystem = new PlayerSystem(new List<IEntityInputSource>
+            _playerSystem = new PlayerSystem(_playerEntity, new List<IEntityInputSource>
             {
                 _gameUIInputView,
                 _externalDevicesInputReader
-            }, _playerEntity);
+            });
 
             ItemsFactory itemsFactory = new ItemsFactory(_playerSystem.StatsController);
             List<IItemRarityColor> rarityColors = _rarityDescriptorsStorage.RarityDescriptors.Cast<IItemRarityColor>().ToList();

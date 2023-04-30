@@ -89,7 +89,7 @@ namespace UI
 
         private TView GetView<TView>(ScreenType screenType) where TView : ScreenView
         {
-            TView prefab = Resources.Load<TView>($"{LoadPath}{screenType}");
+            TView prefab = Resources.Load<TView>($"{LoadPath}{screenType}/{screenType}");
             return Object.Instantiate(prefab, _uiContainer);
         }
 

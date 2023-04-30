@@ -47,6 +47,7 @@ namespace UI.InventoryUI
             InitializeEquipment();
             _inventory.BackpackChanged += UpdateBackpack;
             _inventory.EquipmentChanged += UpdateEquipment;
+            View.CloseClicked += RequestClose;
             base.Initialize();
         }
 
@@ -56,6 +57,7 @@ namespace UI.InventoryUI
             ClearEquipment();
             _inventory.BackpackChanged -= UpdateBackpack;
             _inventory.EquipmentChanged -= UpdateEquipment;
+            View.CloseClicked -= RequestClose;
             base.Complete();
         }
 

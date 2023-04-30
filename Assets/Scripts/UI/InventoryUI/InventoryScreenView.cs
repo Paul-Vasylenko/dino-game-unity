@@ -14,6 +14,7 @@ namespace UI.InventoryUI
     {
         [SerializeField] private Button _closeButton;
         [SerializeField] private TMP_Text _potionsText;
+        [SerializeField] private TMP_Text _moneyText;
 
         [SerializeField] private Transform _backPackContainer;
         [SerializeField] private Transform _equipmentContainer;

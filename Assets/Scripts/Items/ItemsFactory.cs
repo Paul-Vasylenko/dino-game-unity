@@ -33,7 +33,7 @@ namespace Items
                 case ItemType.Hat:
                     return EquipmentType.Hat;
                 case ItemType.Accessory:
-                    return EquipmentType.Boots;
+                    return EquipmentType.Accessory;
                 case ItemType.Weapon:
                     var weaponDescriptor = descriptor as WeaponDescriptor;
                     switch (weaponDescriptor.WeaponType)

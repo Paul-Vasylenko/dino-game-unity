@@ -18,7 +18,7 @@ namespace Items
                 case ItemType.Potion:
                     return new Potion(descriptor, _statsController);
                 case ItemType.Hat:
-                case ItemType.Boots:
+                case ItemType.Accessory:
                 case ItemType.Weapon:
                     return new Equipment(descriptor, _statsController, GetEquipmentType(descriptor));
                 default:
@@ -32,7 +32,7 @@ namespace Items
             {
                 case ItemType.Hat:
                     return EquipmentType.Hat;
-                case ItemType.Boots:
+                case ItemType.Accessory:
                     return EquipmentType.Boots;
                 case ItemType.Weapon:
                     var weaponDescriptor = descriptor as WeaponDescriptor;

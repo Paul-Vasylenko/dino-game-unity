@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6c8b092aad41fb9acf58542f9530ac, type: 3}
   m_Name: ItemsStorage
   m_EditorClassIdentifier: 
-  <ItemScriptables>k__BackingField:
-  - {fileID: 11400000, guid: 3d639b90b67405546918a025d04b732b, type: 2}
+  <ItemScriptables>k__BackingField: []

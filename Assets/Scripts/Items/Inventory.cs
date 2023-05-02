@@ -42,11 +42,10 @@ namespace Items
 
         public bool TryEquip(Item item)
         {
+            Debug.Log(1);
             if (!(item is Equipment equipment))
                 return false;
-
-            if (!_equipmentFitter.IsEquipmentConditionFits(equipment, Equipment))
-                return false;
+            Debug.Log(2);
 
             #region InventoryScreen
             if (!_equipmentFitter.TryReplaceEquipment(equipment, Equipment, out var oldEquipment))

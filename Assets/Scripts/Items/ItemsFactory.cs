@@ -19,8 +19,6 @@ namespace Items
                     return new Potion(descriptor, _statsController);
                 case ItemType.Hat:
                 case ItemType.Boots:
-                case ItemType.Weapon:
-                    return new Equipment(descriptor, _statsController, GetEquipmentType(descriptor));
                 default:
                     throw new NullReferenceException($"Item type {descriptor.Type} is not implemented yet");
             }
@@ -34,17 +32,6 @@ namespace Items
                     return EquipmentType.Hat;
                 case ItemType.Boots:
                     return EquipmentType.Boots;
-                case ItemType.Weapon:
-                    var weaponDescriptor = descriptor as WeaponDescriptor;
-                    switch (weaponDescriptor.WeaponType)
-                    {
-                        case WeaponType.Bow:
-                        case WeaponType.Spear:
-                            return EquipmentType.BothHands;
-                        case WeaponType.Knife:
-                            return EquipmentType.OneHand;
-                    }
-                    throw new NullReferenceException("Weapon has wrong type");
                 case ItemType.None:
                 case ItemType.Potion:
                 default:

@@ -1068,6 +1068,7 @@ TextureImporter:
       Sand Mud Ice (16x6)_20: 2689398577134263771
       Sand Mud Ice (16x6)_12: -2762073995133416762
       Sand Mud Ice (16x6)_19: 4263242007108318073
+<<<<<<< HEAD:Assets/Pixel Adventure 1/Assets/Traps/Sand Mud Ice/Sand Mud Ice Sliced (16x6).png.meta
       Sand Mud Ice (16x6)_36: -3036474563160157822
       Sand Mud Ice (16x6)_26: -8884820511876549848
       Sand Mud Ice (16x6)_22: 6832011233148574984
@@ -1102,6 +1103,8 @@ TextureImporter:
       Sand Mud Ice (16x6)_13: -8137486253352134369
       Sand Mud Ice (16x6)_30: 7668828061770806365
       Sand Mud Ice (16x6)_10: -756588449674228840
+=======
+>>>>>>> 7953c94e685ada38be3adf3b1f7f3d4466720532:Assets/Libraries/Pixel Adventure 1/Assets/Traps/Sand Mud Ice/Sand Mud Ice Sliced (16x6).png.meta
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

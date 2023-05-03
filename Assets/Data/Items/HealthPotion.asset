@@ -10,13 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 968004eb6d1d4966b197ddfb416368cf, type: 3}
-  m_Name: Item
+  m_Name: HealthPotion
   m_EditorClassIdentifier: 
   _itemDescriptor:
     <ItemId>k__BackingField: 1
     <Type>k__BackingField: 4
-    <ItemSprite>k__BackingField: {fileID: -5728686177044832811, guid: b1f24b3bc2e2f1d4b858657ad5c115a0, type: 3}
+    <ItemSprite>k__BackingField: {fileID: -72551466, guid: 2f605f8487435b64780f2f663cc01c4c, type: 3}
     <ItemRarity>k__BackingField: 2
     <Price>k__BackingField: 0
     <Level>k__BackingField: 0
-    <Stats>k__BackingField: []
+    <Stats>k__BackingField:
+    - <Stat>k__BackingField:
+        <Type>k__BackingField: 1
+        <Value>k__BackingField: 30
+      <Type>k__BackingField: 0
+      <Duration>k__BackingField: -1

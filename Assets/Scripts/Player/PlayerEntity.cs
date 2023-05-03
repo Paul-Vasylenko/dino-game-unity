@@ -22,6 +22,7 @@ namespace Player
         private Jumper _jumper;
 
         private Rigidbody2D _rigidbody;
+        
 
         private void Update()
         {
@@ -50,6 +51,50 @@ namespace Player
             _animator.PlayAnimation(AnimationType.Idle, true);
             _animator.PlayAnimation(AnimationType.Run, _horizontalMover.IsMoving);
             _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
+        }
+        
+        public void StartKick()
+        {
+            if (!_animator.PlayAnimation(AnimationType.Kick, true))
+                return;
+
+            _animator.ActionRequested += Kick;
+            _animator.AnimationEnded += EndKick;
+        }
+
+        private void Kick()
+        {
+            Debug.Log("Kick");
+        }
+        
+        private void EndKick()
+        {
+            Debug.Log("END!");
+            _animator.ActionRequested -= Kick;
+            _animator.AnimationEnded -= EndKick;
+            _animator.PlayAnimation(AnimationType.Kick, false);
+        }
+        
+        public void StartBite()
+        {
+            if (!_animator.PlayAnimation(AnimationType.Bite, true))
+                return;
+
+            _animator.ActionRequested += Bite;
+            _animator.AnimationEnded += EndBite;
+        }
+
+        private void Bite()
+        {
+            Debug.Log("Bite");
+        }
+        
+        private void EndBite()
+        {
+            Debug.Log("END!");
+            _animator.ActionRequested -= Bite;
+            _animator.AnimationEnded -= EndBite;
+            _animator.PlayAnimation(AnimationType.Bite, false);
         }
 
         public void MoveHorizontally(float direction)

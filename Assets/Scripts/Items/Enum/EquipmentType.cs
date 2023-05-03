@@ -4,8 +4,6 @@
     {
         None = 0,
         Hat = 1,
-        Boots = 2,
-        OneHand = 3,
-        BothHands = 4
+        Accessory = 2,
     }
 }

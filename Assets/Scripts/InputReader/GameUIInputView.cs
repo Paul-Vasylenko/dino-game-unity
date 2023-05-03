@@ -1,14 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace InputReader
 {
-    public class GameUIInputView : MonoBehaviour, IEntityInputSource
+    public class GameUIInputView : MonoBehaviour, IEntityInputSource, IWindowsInputSource
     {
         [SerializeField] private Joystick _joystick;
         [SerializeField] private Button _jumpButton;
         [SerializeField] private Button _kickButton;
         [SerializeField] private Button _biteButton;
+        public float HorizontalDirection => _joystick.Horizontal;
+        public bool Jump { get; private set; }
+        public bool Kick { get; private set; }
+        public bool Bite { get; private set; }
+
+        public event Action InventoryRequested;
+        public event Action StatsWindowRequested;
 
         private void Awake()
         {
@@ -23,12 +31,6 @@ namespace InputReader
             _kickButton.onClick.RemoveAllListeners();
             _biteButton.onClick.RemoveAllListeners();
         }
-
-        public float HorizontalDirection => _joystick.Horizontal;
-        public bool Jump { get; private set; }
-        public bool Kick { get; private set; }
-        public bool Bite { get; private set; }
-
         public void ResetOneTimeActions()
         {
             Jump = false;

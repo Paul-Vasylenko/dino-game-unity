@@ -4,8 +4,16 @@ using UnityEngine;
 
 namespace InputReader
 {
-    public class ExternalDevicesInputReader : IEntityInputSource, IDisposable
+    public class ExternalDevicesInputReader : IEntityInputSource, IWindowsInputSource, IDisposable
     {
+        public float HorizontalDirection => Input.GetAxisRaw("Horizontal");
+        public bool Jump { get; private set; }
+        public bool Kick { get; private set; }
+        public bool Bite { get; private set; }
+
+        public event Action InventoryRequested;
+        public event Action StatsWindowRequested;
+
         public ExternalDevicesInputReader()
         {
             ProjectUpdater.Instance.UpdateCalled += OnUpdate;
@@ -15,11 +23,6 @@ namespace InputReader
         {
             ProjectUpdater.Instance.UpdateCalled -= OnUpdate;
         }
-
-        public float HorizontalDirection => Input.GetAxisRaw("Horizontal");
-        public bool Jump { get; private set; }
-        public bool Kick { get; private set; }
-        public bool Bite { get; private set; }
 
         public void ResetOneTimeActions()
         {
@@ -31,8 +34,11 @@ namespace InputReader
         private void OnUpdate()
         {
             if (Input.GetButtonDown("Jump")) Jump = true;
-            if (Input.GetButtonDown("Fire1")) Kick = true;
-            if (Input.GetButtonDown("Fire2")) Bite = true;
+            if (Input.GetKeyDown(KeyCode.X)) Kick = true;
+            if (Input.GetKeyDown(KeyCode.C)) Bite = true; 
+            
+            if (Input.GetKeyDown(KeyCode.I)) InventoryRequested?.Invoke();
+            if (Input.GetKeyDown(KeyCode.O)) StatsWindowRequested?.Invoke();
         }
     }
 }

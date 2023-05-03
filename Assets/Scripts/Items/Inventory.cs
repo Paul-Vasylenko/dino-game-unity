@@ -8,7 +8,7 @@ namespace Items
 {
     public class Inventory
     {
-        public const int InventorySize = 30;
+        public const int InventorySize = 15;
         private readonly EquipmentConditionChecker _equipmentFitter;
         private readonly Transform _player;
 

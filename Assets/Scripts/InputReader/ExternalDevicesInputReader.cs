@@ -34,8 +34,8 @@ namespace InputReader
         private void OnUpdate()
         {
             if (Input.GetButtonDown("Jump")) Jump = true;
-            if (Input.GetButtonDown("Fire1")) Kick = true; // ЛКМ
-            if (Input.GetButtonDown("Fire2")) Bite = true; // ПКМ
+            if (Input.GetKeyDown(KeyCode.X)) Kick = true;
+            if (Input.GetKeyDown(KeyCode.C)) Bite = true; 
             
             if (Input.GetKeyDown(KeyCode.I)) InventoryRequested?.Invoke();
             if (Input.GetKeyDown(KeyCode.O)) StatsWindowRequested?.Invoke();

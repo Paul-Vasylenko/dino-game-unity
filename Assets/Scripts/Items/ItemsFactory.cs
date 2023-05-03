@@ -18,7 +18,8 @@ namespace Items
                 case ItemType.Potion:
                     return new Potion(descriptor, _statsController);
                 case ItemType.Hat:
-                case ItemType.Boots:
+                case ItemType.Accessory:
+                    return new Equipment(descriptor, _statsController, GetEquipmentType(descriptor));
                 default:
                     throw new NullReferenceException($"Item type {descriptor.Type} is not implemented yet");
             }
@@ -30,8 +31,8 @@ namespace Items
             {
                 case ItemType.Hat:
                     return EquipmentType.Hat;
-                case ItemType.Boots:
-                    return EquipmentType.Boots;
+                case ItemType.Accessory:
+                    return EquipmentType.Accessory;
                 case ItemType.None:
                 default:
                     return EquipmentType.None;

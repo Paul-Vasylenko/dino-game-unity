@@ -4,7 +4,7 @@
     {
         None = 0,
         Hat = 1,
-        Boots = 2,
+        Accessory = 2,
         Potion = 3
     }
 }

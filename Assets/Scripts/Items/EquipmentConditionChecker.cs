@@ -16,7 +16,7 @@ namespace Items
             switch (equipment.EquipmentType)
             {
                 case EquipmentType.Hat:
-                case EquipmentType.Boots: 
+                case EquipmentType.Accessory: 
                     return true;
                 case EquipmentType.None:
                 default:

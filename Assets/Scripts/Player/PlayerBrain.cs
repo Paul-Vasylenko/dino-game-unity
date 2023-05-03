@@ -19,6 +19,8 @@ namespace Player
         }
 
         private bool IsJump => _inputSources.Any(source => source.Jump);
+        private bool IsKick => _inputSources.Any(source => source.Kick);
+        private bool IsBite => _inputSources.Any(source => source.Bite);
 
         public void Dispose()
         {
@@ -31,6 +33,12 @@ namespace Player
 
             if (IsJump)
                 _playerEntity.Jump();
+            
+            if(IsKick)
+                _playerEntity.StartKick();
+            
+            if(IsBite)
+                _playerEntity.StartBite();
 
             foreach (var inputSource in _inputSources) inputSource.ResetOneTimeActions();
         }

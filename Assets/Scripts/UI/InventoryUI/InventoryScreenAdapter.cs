@@ -85,21 +85,8 @@ namespace UI.InventoryUI
             foreach (var slot in equipment)
             {
                 var item = _inventory.Equipment.Find(equip => equip.EquipmentType == slot.EquipmentType);
-                if (item == null && slot.EquipmentType == EquipmentType.OneHand)
-                    item = _inventory.Equipment.Find(equip => equip.EquipmentType == EquipmentType.BothHands);
 
                 _equipmentSlots.Add(slot, item);
-
-                if (slot.EquipmentType == EquipmentType.OneHand)
-                {
-                    var twoHandWeapon = _inventory.Equipment.Find(equip => equip.EquipmentType == EquipmentType.BothHands);
-                    if (twoHandWeapon != null)
-                    {
-                        slot.SetAfterImage(twoHandWeapon.Descriptor.ItemSprite,
-                            GetBackSprite(twoHandWeapon.Descriptor.ItemRarity));
-                        continue;
-                    }
-                }
 
                 if (item == null)
                     continue;

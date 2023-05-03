@@ -23,7 +23,6 @@ namespace Player
 
         private Rigidbody2D _rigidbody;
         
-        private bool _inAction;
 
         private void Update()
         {
@@ -54,20 +53,48 @@ namespace Player
             _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
         }
         
-        public void Bite()
+        public void StartKick()
         {
-            if (_inAction)
+            if (!_animator.PlayAnimation(AnimationType.Kick, true))
                 return;
-            
-            _inAction = _animator.PlayAnimation(AnimationType.Bite, true, Bite, EndAction);
+
+            _animator.ActionRequested += Kick;
+            _animator.AnimationEnded += EndKick;
+        }
+
+        private void Kick()
+        {
+            Debug.Log("Kick");
         }
         
-        public void Kick()
+        private void EndKick()
         {
-            if (_inAction)
+            Debug.Log("END!");
+            _animator.ActionRequested -= Kick;
+            _animator.AnimationEnded -= EndKick;
+            _animator.PlayAnimation(AnimationType.Kick, false);
+        }
+        
+        public void StartBite()
+        {
+            if (!_animator.PlayAnimation(AnimationType.Bite, true))
                 return;
-            
-            _inAction = _animator.PlayAnimation(AnimationType.Kick, true, Kick, EndAction);
+
+            _animator.ActionRequested += Bite;
+            _animator.AnimationEnded += EndBite;
+        }
+
+        private void Bite()
+        {
+            Debug.Log("Bite");
+        }
+        
+        private void EndBite()
+        {
+            Debug.Log("END!");
+            _animator.ActionRequested -= Bite;
+            _animator.AnimationEnded -= EndBite;
+            _animator.PlayAnimation(AnimationType.Bite, false);
         }
 
         public void MoveHorizontally(float direction)
@@ -78,11 +105,6 @@ namespace Player
         public void Jump()
         {
             _jumper.Jump();
-        }
-        
-        private void EndAction()
-        {
-            _inAction = false;
         }
     }
 }

@@ -35,10 +35,10 @@ namespace Player
                 _playerEntity.Jump();
             
             if(IsKick)
-                _playerEntity.Kick();
+                _playerEntity.StartKick();
             
             if(IsBite)
-                _playerEntity.Bite();
+                _playerEntity.StartBite();
 
             foreach (var inputSource in _inputSources) inputSource.ResetOneTimeActions();
         }

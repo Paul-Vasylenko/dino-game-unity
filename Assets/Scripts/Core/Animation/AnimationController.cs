@@ -7,25 +7,23 @@ namespace Core.Animation
     {
         private AnimationType _currentAnimationType;
         
-        private Action _animationAction;
-        private Action _animationEndAction;
+        public event Action ActionRequested;
+        public event Action AnimationEnded;
 
-        public bool PlayAnimation(AnimationType animationType, bool active, Action animationAction = null, Action endAnimationAction = null)
+        public bool PlayAnimation(AnimationType animationType, bool active)
         {
             if (!active)
             {
                 if (_currentAnimationType == AnimationType.Idle || _currentAnimationType != animationType)
                     return false; // if we try to disable Idle animation or wrong animation
 
-                OnAnimationEnded();
+                SetAnimation(AnimationType.Idle);
                 return false;
             }
 
             if (_currentAnimationType > animationType)
                 return false; // new animation priority is less than the animation playing now
 
-            _animationAction = animationAction;
-            _animationEndAction = endAnimationAction;
             SetAnimation(animationType);
             return true;
         }
@@ -36,11 +34,7 @@ namespace Core.Animation
             _currentAnimationType = animationType;
             PlayAnimation(_currentAnimationType);
         }
-        protected void OnAnimationEnded()
-        {
-            _animationEndAction?.Invoke();
-            _animationEndAction = null;
-            SetAnimation(AnimationType.Idle);
-        } 
+        protected void OnActionRequested() => ActionRequested?.Invoke();
+        protected void OnAnimationEnded() => AnimationEnded?.Invoke();
     }
 }

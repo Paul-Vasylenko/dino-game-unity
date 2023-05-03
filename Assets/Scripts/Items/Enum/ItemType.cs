@@ -5,6 +5,6 @@
         None = 0,
         Hat = 1,
         Boots = 2,
-        Potion = 4
+        Potion = 3
     }
 }

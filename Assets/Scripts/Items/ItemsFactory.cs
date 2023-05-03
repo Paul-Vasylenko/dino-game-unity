@@ -33,7 +33,6 @@ namespace Items
                 case ItemType.Boots:
                     return EquipmentType.Boots;
                 case ItemType.None:
-                case ItemType.Potion:
                 default:
                     return EquipmentType.None;
             }

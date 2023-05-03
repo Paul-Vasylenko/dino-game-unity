@@ -17,7 +17,6 @@ namespace Items
             {
                 case EquipmentType.Hat:
                 case EquipmentType.Boots: 
-                case EquipmentType.Potion:
                     return true;
                 case EquipmentType.None:
                 default:

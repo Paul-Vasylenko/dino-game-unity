@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Items.Behaviour
 {
@@ -49,7 +50,7 @@ namespace Items.Behaviour
         public void PlayDrop(Vector2 position)
         {
             transform.position = position;
-            var movePosition = new Vector3(position.x, position.y, 0);
+            var movePosition = new Vector3(position.x + Random.Range(6, 8), position.y, 0);
             _sequence = DOTween.Sequence();
             _sequence.Join(transform.DOMove(movePosition, _dropAnimationDuration));
             _sequence.OnComplete(() => _canvas.enabled = _isTextEnabled);

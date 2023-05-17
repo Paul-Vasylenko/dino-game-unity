@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 10366700147054173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.25, y: -0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -54,8 +54,6 @@ MonoBehaviour:
   _button: {fileID: 3842687262358934234}
   _canvas: {fileID: 6492016940784032033}
   _dropAnimationDuration: 0.1
-  _dropRotation: 0
-  _dropRadius: 1
   <InteractionDistance>k__BackingField: 2
 --- !u!50 &-2397497378782424097
 Rigidbody2D:

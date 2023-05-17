@@ -24,8 +24,7 @@ namespace Items
         {
             _sceneItem = Resources.Load<SceneItem>($"{nameof(ItemsSystem)}/{nameof(SceneItem)}");
             _itemsOnScene = new Dictionary<SceneItem, Item>();
-            var gameObject = new GameObject
-            {
+            var gameObject = new GameObject{
                 name = nameof(ItemsSystem)
             };
             _transform = gameObject.transform;

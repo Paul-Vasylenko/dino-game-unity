@@ -3,7 +3,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Items.Behaviour
 {
@@ -16,8 +15,6 @@ namespace Items.Behaviour
 
         [Header("Drop Animation")]
         [SerializeField] private float _dropAnimationDuration;
-        [SerializeField] private float _dropRotation;
-        [SerializeField] private float _dropRadius;
 
         private Sequence _sequence;
 
@@ -52,10 +49,9 @@ namespace Items.Behaviour
         public void PlayDrop(Vector2 position)
         {
             transform.position = position;
-            var movePosition = new Vector3(transform.position.x + Random.Range(-_dropRadius, _dropRadius), 0, 0);
+            var movePosition = new Vector3(position.x, position.y, 0);
             _sequence = DOTween.Sequence();
             _sequence.Join(transform.DOMove(movePosition, _dropAnimationDuration));
-            _sequence.Join(_sprite.transform.DORotate(new Vector3(0, 0, Random.Range(-_dropRotation, _dropRotation)), _dropAnimationDuration));
             _sequence.OnComplete(() => _canvas.enabled = _isTextEnabled);
         }
 

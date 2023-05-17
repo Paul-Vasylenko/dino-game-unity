@@ -28,7 +28,7 @@ namespace Items
             if (!items.Any()) return;
             
             ItemDescriptor itemDescriptor = items[Random.Range(0, items.Count())];
-            _itemsSystem.DropItem(itemDescriptor, _playerEntity.transform.position + Vector3.one);
+            _itemsSystem.DropItem(itemDescriptor, _playerEntity.transform.position);
 
         }
         

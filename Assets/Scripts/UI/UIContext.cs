@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using InputReader;
 using Items;
 using Items.Data;
+using StatsSystem;
 using UI.Core;
 using UI.Enum;
 using UI.InventoryUI;
+using UI.StatsUI;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -29,6 +31,7 @@ namespace UI
             foreach (IWindowsInputSource inputSource in _inputSources)
             {
                 inputSource.InventoryRequested += OpenInventory;
+                inputSource.StatsRequested += OpenStats;
             }
 
             GameObject container = new()
@@ -50,6 +53,7 @@ namespace UI
             foreach (IWindowsInputSource inputSource in _inputSources)
             {
                 inputSource.InventoryRequested -= OpenInventory;
+                inputSource.StatsRequested -= OpenStats;
             }
 
             foreach (IScreenController screenPresenter in _controllers.Values)
@@ -60,6 +64,8 @@ namespace UI
         }
 
         private void OpenInventory() => OpenScreen(ScreenType.Inventory);
+
+        private void OpenStats() => OpenScreen(ScreenType.Stats);
 
         private void OpenScreen(ScreenType screenType)
         {
@@ -83,6 +89,7 @@ namespace UI
             {
                 ScreenType.Inventory =>
                     new InventoryScreenAdapter(GetView<InventoryScreenView>(screenType), _data.Inventory, _data.RarityDescriptors),
+                ScreenType.Stats => new StatsScreenAdapter(GetView<StatsScreenView>(screenType), _data.StatsController),
                 _ => throw new NullReferenceException()
             };
         }
@@ -97,11 +104,13 @@ namespace UI
         {
             public Inventory Inventory { get; }
             public List<RarityDescriptor> RarityDescriptors { get; }
+            public StatsController StatsController { get; }
 
-            public Data(Inventory inventory, List<RarityDescriptor> rarityDescriptors)
+            public Data(Inventory inventory, List<RarityDescriptor> rarityDescriptors, StatsController statsController)
             {
                 Inventory = inventory;
                 RarityDescriptors = rarityDescriptors;
+                StatsController = statsController;
             }
         }
     }

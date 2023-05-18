@@ -12,7 +12,7 @@ namespace InputReader
         public bool Bite { get; private set; }
 
         public event Action InventoryRequested;
-        public event Action StatsWindowRequested;
+        public event Action StatsRequested;
 
         public ExternalDevicesInputReader()
         {
@@ -38,7 +38,7 @@ namespace InputReader
             if (Input.GetKeyDown(KeyCode.C)) Bite = true; 
             
             if (Input.GetKeyDown(KeyCode.I)) InventoryRequested?.Invoke();
-            if (Input.GetKeyDown(KeyCode.O)) StatsWindowRequested?.Invoke();
+            if (Input.GetKeyDown(KeyCode.O)) StatsRequested?.Invoke();
         }
     }
 }

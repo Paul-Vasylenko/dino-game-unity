@@ -32,16 +32,12 @@ namespace StatsSystem
         public void ProcessModificator(StatModificator modificator)
         {
             var statToChange = _currentStats.Find(stat => stat.Type == modificator.Stat.Type);
+            var newValue = modificator.Type == StatModificatorType.Additive ? 
+                statToChange + modificator.Stat : statToChange * modificator.Stat;
 
-            if (statToChange == null)
-                return;
-
-            var addedValue = modificator.Type == StatModificatorType.Additive
-                ? statToChange + modificator.Stat
-                : statToChange * modificator.Stat;
-
+            var addedValue = newValue - statToChange;
             statToChange.SetStatValue(statToChange + addedValue);
-
+            
             if (modificator.Duration < 0) return;
 
             if (_activeModificators.Contains(modificator))

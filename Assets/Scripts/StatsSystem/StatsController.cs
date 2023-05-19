@@ -12,6 +12,8 @@ namespace StatsSystem
         private readonly List<StatModificator> _activeModificators;
         private readonly List<Stat> _currentStats;
 
+        public event Action Updated;
+
         public StatsController(List<Stat> currentStats)
         {
             _currentStats = currentStats;

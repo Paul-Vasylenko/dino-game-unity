@@ -24,13 +24,6 @@ namespace Items.Core
             _amount--;
             foreach (var stat in _itemDescriptor.Stats)
                 _statsController.ProcessModificator(stat);
-            if (_amount <= 0)
-                Destroy();
-        }
-
-        private void Destroy()
-        {
-            throw new NotImplementedException();
         }
 
         public void AddToStack()

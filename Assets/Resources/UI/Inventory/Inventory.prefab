@@ -855,6 +855,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 53.362
       objectReference: {fileID: 0}
+    - target: {fileID: 4734088646388369990, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_fontSize
+      value: 65.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734088646388369990, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4734088646388369990, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4734088646394650658, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
       propertyPath: m_Name
       value: Equipment
@@ -1215,9 +1227,25 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 53.362
       objectReference: {fileID: 0}
+    - target: {fileID: 6054537419709069338, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_fontSize
+      value: 65.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054537419709069338, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 6054537419709069338, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 6054537419719561854, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 6054537419719561854, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6054537419719561855, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
       propertyPath: m_AnchorMax.x

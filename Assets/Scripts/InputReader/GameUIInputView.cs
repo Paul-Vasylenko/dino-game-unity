@@ -16,7 +16,7 @@ namespace InputReader
         public bool Bite { get; private set; }
 
         public event Action InventoryRequested;
-        public event Action StatsWindowRequested;
+        public event Action StatsRequested;
 
         private void Awake()
         {

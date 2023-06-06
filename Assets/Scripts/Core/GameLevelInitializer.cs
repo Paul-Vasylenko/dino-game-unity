@@ -8,9 +8,11 @@ using Items;
 using Items.Data;
 using Items.Rarity;
 using Items.Storage;
+using NPC.Spawn;
 using Player;
 using UI;
 using UnityEngine;
+using NPC.Enum;
 
 namespace Core
 {
@@ -21,6 +23,7 @@ namespace Core
         [SerializeField] private ItemRarityDescriptorsStorage _rarityDescriptorsStorage;
         [SerializeField] private LayerMask _whatIsPlayer;
         [SerializeField] private ItemsStorage _itemsStorage;
+        [SerializeField] private Transform _spawnPoint;
 
         private ExternalDevicesInputReader _externalDevicesInputReader;
 
@@ -30,6 +33,7 @@ namespace Core
         private ItemsSystem _itemsSystem;
         private UIContext _uiContext;
         private LevelDrawer _levelDrawer;
+        private EntitySpawner _entitySpawner;
 
         private void Awake()
         {
@@ -60,12 +64,17 @@ namespace Core
 
             _levelDrawer = new LevelDrawer(LevelId.Level1);
             _levelDrawer.RegisterElement(_playerSystem.PlayerEntity);
+
+            _entitySpawner = new EntitySpawner(_levelDrawer);
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 _uiContext.CloseCurrentScreen();
+
+            if (Input.GetKeyDown(KeyCode.Q))
+                _entitySpawner.SpawnEntity(EntityId.Rat, _spawnPoint.position);
         }
     }
 }

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: StatsStorage
   m_EditorClassIdentifier: 
   <Stats>k__BackingField:
+  - <Type>k__BackingField: 1
+    <Value>k__BackingField: 200
   - <Type>k__BackingField: 3
     <Value>k__BackingField: 8
   - <Type>k__BackingField: 4

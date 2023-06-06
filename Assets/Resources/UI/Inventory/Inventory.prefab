@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _root: {fileID: 7406922679061769266}
-  _closeButton: {fileID: 6162228955590661814}
+  _closeButton: {fileID: 4509331013609852397}
   _statsButton: {fileID: 6194203810471107255}
   _potionsText: {fileID: 0}
   _moneyText: {fileID: 0}
@@ -1360,6 +1360,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 37.464966
       objectReference: {fileID: 0}
+    - target: {fileID: 6752749767660560522, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_Name
+      value: Close Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8914731982878878132, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -5.4775085
@@ -1372,11 +1376,35 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -5.4630127
       objectReference: {fileID: 0}
+    - target: {fileID: 9145292484241758233, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145292484241758233, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145292484241758233, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145292484241758233, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145292484241758233, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160.88098
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145292484241758233, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 147.661
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
---- !u!114 &6162228955590661814 stripped
+--- !u!114 &4509331013609852397 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7442206959465598829, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+  m_CorrespondingSourceObject: {fileID: 889735739244713014, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
   m_PrefabInstance: {fileID: 3660482405283174875}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

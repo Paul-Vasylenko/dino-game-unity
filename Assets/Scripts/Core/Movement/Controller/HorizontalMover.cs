@@ -6,48 +6,30 @@ using UnityEngine;
 
 namespace Core.Movement.Controller
 {
-    public class HorizontalMover
+    public abstract class HorizontalMover
     {
-        private readonly HorizontalMovementData _horizontalMovementData;
-        private readonly Rigidbody2D _rigidbody;
-        private readonly IStatValueGiver _statValueGiver;
-        private readonly Transform _transform;
-
-        private Vector2 _movement;
-
-        public HorizontalMover(Rigidbody2D rigidbody, HorizontalMovementData horizontalMovementData,
-            IStatValueGiver statValueGiver)
-        {
-            _rigidbody = rigidbody;
-            _transform = rigidbody.transform;
-            _horizontalMovementData = horizontalMovementData;
-            _statValueGiver = statValueGiver;
-        }
-
+        protected readonly Rigidbody2D Rigidbody;
         public Direction Direction { get; private set; }
-        public bool IsMoving => _movement.magnitude > 0;
 
-        public void MoveHorizontally(float direction)
+        public HorizontalMover(Rigidbody2D rigidbody)
         {
-            SetDirection(direction);
-            _movement.x = direction;
-            var velocity = _rigidbody.velocity;
-            velocity.x = direction * _statValueGiver.GetStatValue(StatType.Speed);
-            _rigidbody.velocity = velocity;
+            Rigidbody = rigidbody;
+            Direction = Direction.Right;
         }
 
-        private void SetDirection(float direction)
+        public abstract bool IsMoving { get; }
+
+        public abstract void MoveHorizontally(float horizontalMovement);
+
+        public void SetDirection(Direction direction)
         {
-            if (
-                (Direction == Direction.Right && direction < 0)
-                || (Direction == Direction.Left && direction > 0)
-            )
+            if (Direction != direction)
                 Flip();
         }
 
         private void Flip()
         {
-            _transform.Rotate(0, 180, 0);
+            Rigidbody.transform.Rotate(0, 180, 0);
             Direction = Direction == Direction.Left ? Direction.Right : Direction.Left;
         }
     }

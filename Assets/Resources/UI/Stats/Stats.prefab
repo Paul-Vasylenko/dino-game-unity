@@ -517,6 +517,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7406922677784194366}
     m_Modifications:
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160.88098
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 147.661
+      objectReference: {fileID: 0}
     - target: {fileID: 1551767327993352003, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -564,6 +588,10 @@ PrefabInstance:
     - target: {fileID: 1583689492047463234, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
       propertyPath: m_SizeDelta.y
       value: 147.661
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399815726290541016, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_Name
+      value: Close Button
       objectReference: {fileID: 0}
     - target: {fileID: 3937949404870736849, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
       propertyPath: m_Name
@@ -572,48 +600,6 @@ PrefabInstance:
     - target: {fileID: 3951047775073613776, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
       propertyPath: m_Name
       value: Stats Button
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 97e4446ee1ea6d44c9fbc549cbfe06a2, type: 3}
---- !u!224 &6508197480611626539 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5537727572476987711, guid: 97e4446ee1ea6d44c9fbc549cbfe06a2, type: 3}
-  m_PrefabInstance: {fileID: 1623607878886766356}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &3725082710825808582
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7406922677784194366}
-    m_Modifications:
-    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 160.88098
-      objectReference: {fileID: 0}
-    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 147.661
-      objectReference: {fileID: 0}
-    - target: {fileID: 3399815726290541016, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
-      propertyPath: m_Name
-      value: Close Button
       objectReference: {fileID: 0}
     - target: {fileID: 4734088646388369990, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
       propertyPath: m_fontSize

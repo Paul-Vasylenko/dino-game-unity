@@ -520,6 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _root: {fileID: 7406922679061769266}
   _closeButton: {fileID: 4509331013609852397}
+  _statsButton: {fileID: 6194203810471107255}
   _potionsText: {fileID: 0}
   _moneyText: {fileID: 0}
   _backPackContainer: {fileID: 7406922679473228708}
@@ -1404,6 +1405,17 @@ PrefabInstance:
 --- !u!114 &4509331013609852397 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 889735739244713014, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
+  m_PrefabInstance: {fileID: 3660482405283174875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6194203810471107255 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7438432379149534060, guid: 3efc5d1f8b0c1eb4c98c257b4ac47faf, type: 3}
   m_PrefabInstance: {fileID: 3660482405283174875}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

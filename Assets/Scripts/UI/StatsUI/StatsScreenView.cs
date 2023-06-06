@@ -14,15 +14,18 @@ namespace UI.StatsUI
     public class StatsScreenView : ScreenView
     {
         [SerializeField] private Button _closeButton;
+        [SerializeField] private Button _inventoryButton;
         [SerializeField] private Transform _backPackContainer;
 
         public List<StatSlot> StatSlots { get; private set; }
 
         public event Action CloseClicked;
+        public event Action InventoryRequested;
 
         private void Awake()
         {
             _closeButton.onClick.AddListener(() => CloseClicked?.Invoke());
+            _inventoryButton.onClick.AddListener(() => InventoryRequested?.Invoke());
             StatSlots = GetComponentsInChildren<StatSlot>().ToList();
         }
 

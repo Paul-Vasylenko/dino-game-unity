@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _root: {fileID: 7406922679061769266}
-  _closeButton: {fileID: 6091320993614164394}
+  _closeButton: {fileID: 5580764011718893474}
   _backPackContainer: {fileID: 7472649673569296569}
 --- !u!1 &7692623292502397874
 GameObject:
@@ -619,6 +619,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7406922677784194366}
     m_Modifications:
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160.88098
+      objectReference: {fileID: 0}
+    - target: {fileID: 896954435565019467, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 147.661
+      objectReference: {fileID: 0}
+    - target: {fileID: 3399815726290541016, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+      propertyPath: m_Name
+      value: Close Button
+      objectReference: {fileID: 0}
     - target: {fileID: 4734088646388369990, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
       propertyPath: m_fontSize
       value: 65.55
@@ -733,9 +761,9 @@ PrefabInstance:
       objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
---- !u!114 &6091320993614164394 stripped
+--- !u!114 &5580764011718893474 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7438432379149534060, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 9133578984522607972, guid: 1c51e845771bf174281d98cfd7e777f2, type: 3}
   m_PrefabInstance: {fileID: 3725082710825808582}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

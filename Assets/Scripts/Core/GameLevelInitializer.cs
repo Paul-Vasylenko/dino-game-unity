@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Core.Enums;
 using Core.Services.Updater;
+using Drawing;
 using InputReader;
 using Items;
 using Items.Data;
@@ -27,6 +29,7 @@ namespace Core
         private DropGenerator _dropGenerator;
         private ItemsSystem _itemsSystem;
         private UIContext _uiContext;
+        private LevelDrawer _levelDrawer;
 
         private void Awake()
         {
@@ -54,6 +57,9 @@ namespace Core
                 _gameUIInputView,
                 _externalDevicesInputReader
             }, data);
+
+            _levelDrawer = new LevelDrawer(LevelId.Level1);
+            _levelDrawer.RegisterElement(_playerSystem.PlayerEntity);
         }
 
         private void Update()

@@ -15,7 +15,6 @@ namespace Player
         [SerializeField] private HorizontalMovementData _horizontalMovementData;
         [SerializeField] private JumpData _jumpData;
         private Collider2D _collider;
-
         private HorizontalMover _horizontalMover;
         private Jumper _jumper;
 

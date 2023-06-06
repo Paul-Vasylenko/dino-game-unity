@@ -6,24 +6,31 @@ namespace Core.Animation
     public abstract class AnimationController : MonoBehaviour
     {
         private AnimationType _currentAnimationType;
-        
+
+        private Action _animationAction;
+        private Action _animationEndAction;
+
         public event Action ActionRequested;
         public event Action AnimationEnded;
 
-        public bool PlayAnimation(AnimationType animationType, bool active)
+        public bool PlayAnimation(AnimationType animationType, bool active, Action animationAction = null, Action endAnimationAction = null)
         {
             if (!active)
             {
                 if (_currentAnimationType == AnimationType.Idle || _currentAnimationType != animationType)
-                    return false; // if we try to disable Idle animation or wrong animation
+                    return false;
 
-                SetAnimation(AnimationType.Idle);
+                _animationAction = null;
+                _animationEndAction = null;
+                OnAnimationEnded();
                 return false;
             }
 
-            if (_currentAnimationType > animationType)
-                return false; // new animation priority is less than the animation playing now
+            if (_currentAnimationType >= animationType)
+                return false;
 
+            _animationAction = animationAction;
+            _animationEndAction = endAnimationAction;
             SetAnimation(animationType);
             return true;
         }
@@ -34,7 +41,13 @@ namespace Core.Animation
             _currentAnimationType = animationType;
             PlayAnimation(_currentAnimationType);
         }
-        protected void OnActionRequested() => ActionRequested?.Invoke();
-        protected void OnAnimationEnded() => AnimationEnded?.Invoke();
+
+        protected void OnActionRequested() => _animationAction?.Invoke();
+
+        protected void OnAnimationEnded()
+        {
+            _animationEndAction?.Invoke();
+            SetAnimation(AnimationType.Idle);
+        }
     }
 }

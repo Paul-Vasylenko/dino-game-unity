@@ -1,25 +1,21 @@
 using Core.Animation;
 using Core.Movement.Controller;
 using Core.Movement.Data;
+using Drawing;
+using NPC.Behaviour;
 using StatsSystem;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CapsuleCollider2D))]
-    public class PlayerEntity : MonoBehaviour
+    public class PlayerEntity : BaseEntityBehaviour, ILevelGraphicElement
     {
-        [Header("Animation")] [SerializeField] private AnimationController _animator;
-
-        [SerializeField] private HorizontalMovementData _horizontalMovementData;
         [SerializeField] private JumpData _jumpData;
-        private Collider2D _collider;
-        private HorizontalMover _horizontalMover;
-        private Jumper _jumper;
-
-        private Rigidbody2D _rigidbody;
         
+        private Jumper _jumper;
 
         private void Update()
         {
@@ -28,28 +24,27 @@ namespace Player
             if (_jumper.IsJumping) _jumper.UpdateJump();
         }
 
-        public void Initialize(IStatValueGiver statValueGiver)
+        public override void Initialize()
         {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            _collider = GetComponent<CapsuleCollider2D>();
-            _horizontalMover = new HorizontalMover(_rigidbody, _horizontalMovementData, statValueGiver);
-            _jumper = new Jumper(_rigidbody, _jumpData, _collider, statValueGiver);
+            base.Initialize();
+            Rigidbody = GetComponent<Rigidbody2D>();
+            HorizontalMover = new VelocityMover(Rigidbody);
+            _jumper = new Jumper(Rigidbody, _jumpData);
         }
 
-        private void UpdateAnimations()
+        protected override void UpdateAnimations()
         {
-            _animator.PlayAnimation(AnimationType.Idle, true);
-            _animator.PlayAnimation(AnimationType.Run, _horizontalMover.IsMoving);
-            _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
+            base.UpdateAnimations();
+            Animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
         }
-        
+
         public void StartKick()
         {
-            if (!_animator.PlayAnimation(AnimationType.Kick, true))
+            if (!Animator.PlayAnimation(AnimationType.Kick, true))
                 return;
 
-            _animator.ActionRequested += Kick;
-            _animator.AnimationEnded += EndKick;
+            Animator.ActionRequested += Kick;
+            Animator.AnimationEnded += EndKick;
         }
 
         private void Kick()
@@ -60,18 +55,18 @@ namespace Player
         private void EndKick()
         {
             Debug.Log("END!");
-            _animator.ActionRequested -= Kick;
-            _animator.AnimationEnded -= EndKick;
-            _animator.PlayAnimation(AnimationType.Kick, false);
+            Animator.ActionRequested -= Kick;
+            Animator.AnimationEnded -= EndKick;
+            Animator.PlayAnimation(AnimationType.Kick, false);
         }
         
         public void StartBite()
         {
-            if (!_animator.PlayAnimation(AnimationType.Bite, true))
+            if (!Animator.PlayAnimation(AnimationType.Bite, true))
                 return;
 
-            _animator.ActionRequested += Bite;
-            _animator.AnimationEnded += EndBite;
+            Animator.ActionRequested += Bite;
+            Animator.AnimationEnded += EndBite;
         }
 
         private void Bite()
@@ -82,19 +77,14 @@ namespace Player
         private void EndBite()
         {
             Debug.Log("END!");
-            _animator.ActionRequested -= Bite;
-            _animator.AnimationEnded -= EndBite;
-            _animator.PlayAnimation(AnimationType.Bite, false);
+            Animator.ActionRequested -= Bite;
+            Animator.AnimationEnded -= EndBite;
+            Animator.PlayAnimation(AnimationType.Bite, false);
         }
 
-        public void MoveHorizontally(float direction)
+        public void Jump(float jumpForce)
         {
-            _horizontalMover.MoveHorizontally(direction);
-        }
-
-        public void Jump()
-        {
-            _jumper.Jump();
+            _jumper.Jump(jumpForce);
         }
     }
 }

@@ -55,7 +55,7 @@ namespace NPC.Controller
                     _destination = position + new Vector2(_stoppingDistance * delta, 0);
                     _seeker.StartPath(_meleeEntityBehaviour.transform.position, _destination, OnPathCalculated);
                 }
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
 
@@ -81,11 +81,11 @@ namespace NPC.Controller
             if (_isAttacking || _target == null || _currentPath == null || CheckIfCanAttack() || _currentWayPoint >= _currentPath.vectorPath.Count)
                 return;
 
-            var currentPosition = _meleeEntityBehaviour.transform.position;
-            var waypointPosition = _currentPath.vectorPath[_currentWayPoint];
+            Vector2 currentPosition = _meleeEntityBehaviour.transform.position;
+            Vector2 waypointPosition = _currentPath.vectorPath[_currentWayPoint];
             var waypointDirection = waypointPosition - currentPosition;
 
-            if (Vector2.Distance(waypointPosition, currentPosition) < 0.05f)
+            if (Vector2.Distance(waypointPosition, currentPosition) < 0.2f)
             {
                 _currentWayPoint++;
                 return;

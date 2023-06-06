@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Services.Updater;
 using InputReader;
+using NPC.Controller;
+using StatsSystem;
+using StatsSystem.Enum;
 
 namespace Player
 {
-    public class PlayerBrain : IDisposable
+    public class PlayerBrain : Entity, IDisposable
     {
         private readonly List<IEntityInputSource> _inputSources;
         private readonly PlayerEntity _playerEntity;
 
-        public PlayerBrain(PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
+        public PlayerBrain(PlayerEntity playerEntity, StatsController statsController, List<IEntityInputSource> inputSources) : base(playerEntity, statsController)
         {
             _playerEntity = playerEntity;
             _inputSources = inputSources;
@@ -29,10 +32,10 @@ namespace Player
 
         private void OnFixedUpdate()
         {
-            _playerEntity.MoveHorizontally(GetHorizontalDirection());
+            _playerEntity.MoveHorizontally(GetHorizontalDirection() * StatsController.GetStatValue(StatType.Speed));
 
             if (IsJump)
-                _playerEntity.Jump();
+                _playerEntity.Jump(StatsController.GetStatValue(StatType.JumpForce));
             
             if(IsKick)
                 _playerEntity.StartKick();

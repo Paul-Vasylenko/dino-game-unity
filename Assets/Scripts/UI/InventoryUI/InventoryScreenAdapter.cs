@@ -5,6 +5,7 @@ using Items.Core;
 using Items.Data;
 using Items.Enum;
 using UI.Core;
+using UI.Enum;
 using UI.InventoryUI.Element;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -48,6 +49,7 @@ namespace UI.InventoryUI
             _inventory.BackpackChanged += UpdateBackpack;
             _inventory.EquipmentChanged += UpdateEquipment;
             View.CloseClicked += RequestClose;
+            View.InventoryClicked += RequestStats;
             base.Initialize();
         }
 
@@ -58,9 +60,12 @@ namespace UI.InventoryUI
             _inventory.BackpackChanged -= UpdateBackpack;
             _inventory.EquipmentChanged -= UpdateEquipment;
             View.CloseClicked -= RequestClose;
+            View.InventoryClicked -= RequestStats;
             base.Complete();
         }
 
+        private void RequestStats() => RequestScreen(ScreenType.Stats);
+        
         private void InitializeBackPack()
         {
             var backPack = View.ItemSlots;

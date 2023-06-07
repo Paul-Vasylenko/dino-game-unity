@@ -42,5 +42,10 @@ namespace NPC.Behaviour
             Animator.PlayAnimation(AnimationType.Death, true);
             Destroy(gameObject, 1.4f);
         }
+        
+        public void PlayDeathAnimation()
+        {
+            Animator.PlayAnimation(AnimationType.Death, true);
+        }
     }
 }

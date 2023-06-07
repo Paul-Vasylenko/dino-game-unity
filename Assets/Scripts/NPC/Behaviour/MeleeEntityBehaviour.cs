@@ -41,6 +41,8 @@ namespace NPC.Behaviour
             Animator.PlayAnimation(AnimationType.Kick, true, Attack, EndAttack);
         }
 
+        
+
         public void SetDirection(Direction direction) => HorizontalMover.SetDirection(direction);
 
         private void Attack()

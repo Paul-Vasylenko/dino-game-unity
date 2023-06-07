@@ -48,5 +48,10 @@ namespace NPC.Controller
             StatsController.Dispose();
             UnsubscribeFromEvents();
         }
+
+        public void Destroy()
+        {
+            _entityBehaviour.DestroyObject();
+        }
     }
 }

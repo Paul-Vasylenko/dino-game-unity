@@ -58,6 +58,7 @@ namespace NPC.Spawn
             _levelDrawer.UnregisterElement(entity);
             entity.Died -= RemoveEntity;
             entity.Died -= SpawnRandomDrop;
+            entity.Destroy();
         }
     }
 }

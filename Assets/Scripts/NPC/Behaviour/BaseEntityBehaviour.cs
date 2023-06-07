@@ -36,5 +36,10 @@ namespace NPC.Behaviour
         public event Action<float> DamageTaken;
 
         public void TakeDamage(float damage) => DamageTaken?.Invoke(damage);
+
+        public void DestroyObject()
+        {
+            Destroy(gameObject);
+        }
     }
 }

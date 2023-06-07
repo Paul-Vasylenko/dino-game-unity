@@ -20,6 +20,7 @@ namespace Player
             _playerEntity = playerEntity;
             _inputSources = inputSources;
             ProjectUpdater.Instance.FixedUpdateCalled += OnFixedUpdate;
+            Died += Destroy;
         }
 
         private bool IsJump => _inputSources.Any(source => source.Jump);
@@ -66,6 +67,11 @@ namespace Player
             }
 
             return 0;
+        }
+        
+        public void Destroy(Entity died)
+        {
+            died.Destroy();
         }
     }
 }

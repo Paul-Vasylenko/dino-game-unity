@@ -55,7 +55,7 @@ namespace NPC.Controller
                     _destination = position + new Vector2(_stoppingDistance * delta, 0);
                     _seeker.StartPath(_meleeEntityBehaviour.transform.position, _destination, OnPathCalculated);
                 }
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.3f);
             }
         }
 

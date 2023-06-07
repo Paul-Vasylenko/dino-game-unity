@@ -315,7 +315,6 @@ GameObject:
   - component: {fileID: 1892852690545983889}
   - component: {fileID: 1076101540640108474}
   - component: {fileID: 7240038827246068643}
-  - component: {fileID: 5491517837566532387}
   - component: {fileID: 7731437579952207861}
   - component: {fileID: 9127838610091229935}
   - component: {fileID: 8522227682452119118}
@@ -420,22 +419,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &5491517837566532387
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4985616059826297304}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 1c01194edd171a74daea2229baeb7daf, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.043057203, y: 0.05157733}
-  m_Size: {x: 1.0855937, y: 1.1502566}
-  m_Direction: 0
 --- !u!95 &7731437579952207861
 Animator:
   serializedVersion: 5
@@ -513,7 +496,7 @@ MonoBehaviour:
   _attackPoint: {fileID: 2155276104669339537}
   _attackRange: 0.8
   _afterAttackDelay: 1
-  _collider2D: {fileID: 5491517837566532387}
+  _collider2D: {fileID: 2242383838533426339}
   <HpBar>k__BackingField: {fileID: 5451053129424000540}
   <SearchBox>k__BackingField: {x: 16, y: 4.68}
   <Targets>k__BackingField:
@@ -540,7 +523,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 1c01194edd171a74daea2229baeb7daf, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.043057203, y: 0.05157733}

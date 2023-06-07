@@ -10,6 +10,8 @@ namespace InputReader
         [SerializeField] private Button _jumpButton;
         [SerializeField] private Button _kickButton;
         [SerializeField] private Button _biteButton;
+        [SerializeField] private Button _statsButton;
+        [SerializeField] private Button _inventoryButton;
         public float HorizontalDirection => _joystick.Horizontal;
         public bool Jump { get; private set; }
         public bool Kick { get; private set; }
@@ -23,6 +25,8 @@ namespace InputReader
             _jumpButton.onClick.AddListener(() => Jump = true);
             _kickButton.onClick.AddListener(() => Kick = true);
             _biteButton.onClick.AddListener(() => Bite = true);
+            _statsButton.onClick.AddListener(() => StatsRequested?.Invoke());
+            _inventoryButton.onClick.AddListener(() => InventoryRequested?.Invoke());
         }
 
         private void OnDestroy()
@@ -30,7 +34,10 @@ namespace InputReader
             _jumpButton.onClick.RemoveAllListeners();
             _kickButton.onClick.RemoveAllListeners();
             _biteButton.onClick.RemoveAllListeners();
+            _statsButton.onClick.RemoveAllListeners();
+            _inventoryButton.onClick.RemoveAllListeners();
         }
+
         public void ResetOneTimeActions()
         {
             Jump = false;

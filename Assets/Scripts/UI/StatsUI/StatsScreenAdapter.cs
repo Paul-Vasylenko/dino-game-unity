@@ -5,6 +5,7 @@ using Items;
 using StatsSystem;
 using StatsSystem.Enum;
 using UI.Core;
+using UI.Enum;
 using UI.StatsUI.Element;
 using UnityEngine;
 
@@ -21,10 +22,11 @@ namespace UI.StatsUI
             _statsController = statsController;
         }
 
-    public override void Initialize()
+        public override void Initialize()
         {
             InitializeBackPack();
             View.CloseClicked += RequestClose;
+            View.InventoryRequested += RequestInventory;
             _statsController.Updated += UpdateBackpack;
             base.Initialize();
         }
@@ -33,9 +35,12 @@ namespace UI.StatsUI
         {
             ClearBackPack();
             View.CloseClicked -= RequestClose;
+            View.InventoryRequested -= RequestInventory;
             _statsController.Updated -= UpdateBackpack;
             base.Complete();
         }
+
+        private void RequestInventory() => RequestScreen(ScreenType.Inventory);
 
         private void InitializeBackPack()
         {

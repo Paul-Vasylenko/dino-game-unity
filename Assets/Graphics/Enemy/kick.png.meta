@@ -120,12 +120,12 @@ TextureImporter:
       name: kick_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 3
         y: 3
-        width: 15
-        height: 17
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,10 +143,10 @@ TextureImporter:
         serializedVersion: 2
         x: 26
         y: 3
-        width: 15
-        height: 17
-      alignment: 9
-      pivot: {x: 0.5801689, y: 0}
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: kick_2
       rect:
         serializedVersion: 2
-        x: 52
+        x: 51
         y: 3
-        width: 15
+        width: 16
         height: 18
-      alignment: 9
-      pivot: {x: 0.5337555, y: 0}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

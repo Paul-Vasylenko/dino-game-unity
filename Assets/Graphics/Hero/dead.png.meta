@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8f4f5d4c41a841f46b35675d380460e3
+guid: e477280b32c102145a849f2b72a3b0dd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,85 +117,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: jump_0
+      name: dead_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 6
         y: 3
         width: 15
         height: 17
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49199f0a4ab27c8429931ca823d9cc8a
-      internalID: -1098965576
+      spriteID: b732bca7a6dfdfe4a9c6b12602f123ee
+      internalID: 1498312687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jump_1
+      name: dead_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 30
         y: 3
         width: 15
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d76abb095e1d71a4a88313df20146c55
-      internalID: 180539340
+      spriteID: 95911152e810a2f4ea7f890a4debfbb2
+      internalID: 477797369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: jump_2
+      name: dead_2
       rect:
         serializedVersion: 2
-        x: 52
-        y: 7
-        width: 15
-        height: 17
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 254e8973c4ba04e47a8e908563cd2aa3
-      internalID: -1858107837
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: jump_3
-      rect:
-        serializedVersion: 2
-        x: 76
+        x: 54
         y: 3
         width: 15
-        height: 16
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d69242eedd7e1a4e93c01e7daf44deb
-      internalID: -1204313953
+      spriteID: d5f3a0fbd4a7a1d4298286bd0a51dc96
+      internalID: -855952546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 3
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6e12c7bb6fe3294382a55ebeca27d51
+      internalID: -648258084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dead_4
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 3
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90868f4ef73668f4fbfaf29d6b1b47f6
+      internalID: -460319313
       vertices: []
       indices: 
       edges: []
@@ -211,10 +232,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jump_2: -1858107837
-      jump_0: -1098965576
-      jump_1: 180539340
-      jump_3: -1204313953
+      dead_4: -460319313
+      dead_3: -648258084
+      dead_2: -855952546
+      dead_5: -1948289594
+      dead_6: 687334183
+      dead_0: 1498312687
+      dead_1: 477797369
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

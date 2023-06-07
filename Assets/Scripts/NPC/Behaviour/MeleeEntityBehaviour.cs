@@ -29,6 +29,11 @@ namespace NPC.Behaviour
             HorizontalMover = new PositionMover(Rigidbody);
         }
 
+        public override void VisualiseHp(float currentHp)
+        {
+            throw new NotImplementedException();
+        }
+
         private void Update() => UpdateAnimations();
 
         public void StartAttack() => Animator.PlayAnimation(AnimationType.Kick, true, Attack, EndAttack);

@@ -3,6 +3,7 @@ using Core.Animation;
 using Core.Enums;
 using Core.Movement.Controllers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace NPC.Behaviour
 {
@@ -10,6 +11,7 @@ namespace NPC.Behaviour
     {
         [SerializeField] private float _afterAttackDelay;
         [SerializeField] private Collider2D _collider2D;
+        [field: SerializeField] public Slider HpBar { get; private set; }
 
         [field: SerializeField] public Vector2 SearchBox { get; private set; }
         [field: SerializeField] public LayerMask Targets { get; private set; }
@@ -28,12 +30,7 @@ namespace NPC.Behaviour
             base.Initialize();
             HorizontalMover = new PositionMover(Rigidbody);
         }
-
-        public override void VisualiseHp(float currentHp)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private void Update() => UpdateAnimations();
 
         public void StartAttack() => Animator.PlayAnimation(AnimationType.Kick, true, Attack, EndAttack);

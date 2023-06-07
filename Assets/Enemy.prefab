@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 5432159117007748026}
   - component: {fileID: 2259944881468165662}
   m_Layer: 9
-  m_Name: Slider
+  m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,6 +585,7 @@ MonoBehaviour:
   _sortingGroup: {fileID: 7480222576233608993}
   _afterAttackDelay: 1
   _collider2D: {fileID: 7480222576233609003}
+  <HpBar>k__BackingField: {fileID: 2259944881468165662}
   <SearchBox>k__BackingField: {x: 16, y: 4.68}
   <Targets>k__BackingField:
     serializedVersion: 2

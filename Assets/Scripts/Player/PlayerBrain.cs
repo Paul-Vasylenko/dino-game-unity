@@ -14,7 +14,8 @@ namespace Player
         private readonly List<IEntityInputSource> _inputSources;
         private readonly PlayerEntity _playerEntity;
 
-        public PlayerBrain(PlayerEntity playerEntity, StatsController statsController, List<IEntityInputSource> inputSources) : base(playerEntity, statsController)
+        public PlayerBrain(PlayerEntity playerEntity, StatsController statsController,
+            List<IEntityInputSource> inputSources) : base(playerEntity, statsController)
         {
             _playerEntity = playerEntity;
             _inputSources = inputSources;
@@ -24,6 +25,14 @@ namespace Player
         private bool IsJump => _inputSources.Any(source => source.Jump);
         private bool IsKick => _inputSources.Any(source => source.Kick);
         private bool IsBite => _inputSources.Any(source => source.Bite);
+
+        public override void VisualiseHp(float currentHp)
+        {
+            if (currentHp > _playerEntity.StatsUIView.HpBar.maxValue)
+                _playerEntity.StatsUIView.HpBar.maxValue = currentHp;
+
+            _playerEntity.StatsUIView.HpBar.value = currentHp;
+        }
 
         public void Dispose()
         {
@@ -36,11 +45,11 @@ namespace Player
 
             if (IsJump)
                 _playerEntity.Jump(StatsController.GetStatValue(StatType.JumpForce));
-            
-            if(IsKick)
+
+            if (IsKick)
                 _playerEntity.StartKick();
-            
-            if(IsBite)
+
+            if (IsBite)
                 _playerEntity.StartBite();
 
             foreach (var inputSource in _inputSources) inputSource.ResetOneTimeActions();

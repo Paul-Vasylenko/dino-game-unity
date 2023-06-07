@@ -23,6 +23,7 @@ namespace NPC.Controller
         }
 
         public void SetDrawingOrder(int order) => _entityBehaviour.SetDrawingOrder(order);
+        public abstract void VisualiseHp(float currentHp);
 
         public virtual void Dispose() => StatsController.Dispose();
     }

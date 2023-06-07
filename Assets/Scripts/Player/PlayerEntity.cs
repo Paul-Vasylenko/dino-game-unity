@@ -32,14 +32,6 @@ namespace Player
             _jumper = new Jumper(Rigidbody, _jumpData);
         }
 
-        public sealed override void VisualiseHp(float currentHp)
-        {
-            if (currentHp > StatsUIView.HpBar.maxValue)
-                StatsUIView.HpBar.maxValue = currentHp;
-            
-            StatsUIView.HpBar.value = currentHp;
-        }
-
         protected override void UpdateAnimations()
         {
             base.UpdateAnimations();

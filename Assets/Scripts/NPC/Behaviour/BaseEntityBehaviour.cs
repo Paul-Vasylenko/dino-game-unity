@@ -1,6 +1,5 @@
 ﻿using Core.Animation;
 using Core.Movement.Controller;
-using Core.Movement.Controllers;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -22,7 +21,6 @@ namespace NPC.Behaviour
 
         public void SetDrawingOrder(int order) => _sortingGroup.sortingOrder = order;
         public void MoveHorizontally(float direction) => HorizontalMover.MoveHorizontally(direction);
-        public abstract void VisualiseHp(float currentHp);
 
         protected virtual void UpdateAnimations()
         {

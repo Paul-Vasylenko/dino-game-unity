@@ -33,10 +33,10 @@ namespace Player
 
             _playerEntity = playerEntity;
             _playerEntity.Initialize();
-            _playerEntity.VisualiseHp(StatsController.GetStatValue(StatType.Health));
-            
+
             _playerBrain = new PlayerBrain(_playerEntity, StatsController, inputSources);
             _disposables.Add(_playerBrain);
+            _playerBrain.VisualiseHp(StatsController.GetStatValue(StatType.Health));
 
             Inventory = new Inventory(null, null, _playerEntity.transform, new EquipmentConditionChecker());
             PlayerEntity = _playerEntity;

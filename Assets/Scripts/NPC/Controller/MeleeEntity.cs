@@ -140,5 +140,13 @@ namespace NPC.Controller
             _isAttacking = false;
             _searchCoroutine = ProjectUpdater.Instance.StartCoroutine(SearchCoroutine());
         }
+
+        public override void VisualiseHp(float currentHp)
+        {
+            if (_meleeEntityBehaviour.HpBar.maxValue < currentHp)
+                _meleeEntityBehaviour.HpBar.maxValue = currentHp;
+
+            _meleeEntityBehaviour.HpBar.value = currentHp;
+        }
     }
 }

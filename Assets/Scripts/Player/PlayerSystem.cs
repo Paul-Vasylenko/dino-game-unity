@@ -5,6 +5,7 @@ using Core.Services.Updater;
 using InputReader;
 using Items;
 using StatsSystem;
+using StatsSystem.Enum;
 using UnityEngine;
 
 namespace Player
@@ -32,6 +33,8 @@ namespace Player
 
             _playerEntity = playerEntity;
             _playerEntity.Initialize();
+            _playerEntity.VisualiseHp(StatsController.GetStatValue(StatType.Health));
+            
             _playerBrain = new PlayerBrain(_playerEntity, StatsController, inputSources);
             _disposables.Add(_playerBrain);
 

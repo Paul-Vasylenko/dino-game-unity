@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 namespace NPC.Behaviour
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class BaseEntityBehaviour : MonoBehaviour
+    public abstract class BaseEntityBehaviour : MonoBehaviour
     {
         [SerializeField] protected AnimationController Animator;
         [SerializeField] private SortingGroup _sortingGroup;
@@ -22,6 +22,7 @@ namespace NPC.Behaviour
 
         public void SetDrawingOrder(int order) => _sortingGroup.sortingOrder = order;
         public void MoveHorizontally(float direction) => HorizontalMover.MoveHorizontally(direction);
+        public abstract void VisualiseHp(float currentHp);
 
         protected virtual void UpdateAnimations()
         {

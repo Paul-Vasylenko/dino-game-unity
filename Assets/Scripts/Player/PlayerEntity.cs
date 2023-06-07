@@ -13,8 +13,8 @@ namespace Player
     [RequireComponent(typeof(CapsuleCollider2D))]
     public class PlayerEntity : BaseEntityBehaviour, ILevelGraphicElement
     {
+        [field: SerializeField] public PlayerStatsUIView StatsUIView { get; private set; }
         [SerializeField] private JumpData _jumpData;
-        
         private Jumper _jumper;
 
         private void Update()
@@ -32,11 +32,20 @@ namespace Player
             _jumper = new Jumper(Rigidbody, _jumpData);
         }
 
+        public sealed override void VisualiseHp(float currentHp)
+        {
+            if (currentHp > StatsUIView.HpBar.maxValue)
+                StatsUIView.HpBar.maxValue = currentHp;
+            
+            StatsUIView.HpBar.value = currentHp;
+        }
+
         protected override void UpdateAnimations()
         {
             base.UpdateAnimations();
             Animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
         }
+        
 
         public void StartKick()
         {

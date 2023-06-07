@@ -17,12 +17,10 @@ namespace Player
     {
         [field: SerializeField] public PlayerStatsUIView StatsUIView { get; private set; }
         [SerializeField] private JumpData _jumpData;
-
-        [SerializeField] private Transform _attackPoint;
-        [SerializeField] private Transform _bitePoint;
-        [SerializeField] private float _attackRange;
-        [SerializeField] private LayerMask _targets;
         
+        [SerializeField] private LayerMask _targets;
+        [SerializeField] private Transform _bitePoint;
+
         private Jumper _jumper;
         private float _damage;
 

@@ -12,7 +12,10 @@ namespace NPC.Behaviour
     {
         [SerializeField] protected AnimationController Animator;
         [SerializeField] private SortingGroup _sortingGroup;
+        [SerializeField] protected Transform _attackPoint;
+        [SerializeField] protected float _attackRange;
 
+        
         protected Rigidbody2D Rigidbody;
         protected HorizontalMover HorizontalMover;
 

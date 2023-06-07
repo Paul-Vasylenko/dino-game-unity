@@ -1,4 +1,5 @@
 ﻿using System;
+using Battle;
 using Core.Animation;
 using Core.Enums;
 using Core.Movement.Controllers;
@@ -19,6 +20,7 @@ namespace NPC.Behaviour
         public Vector2 Size => _collider2D.bounds.size;
 
         public event Action AttackSequenceEnded;
+        private float _damage;
 
         private void OnDrawGizmos()
         {
@@ -33,13 +35,22 @@ namespace NPC.Behaviour
         
         private void Update() => UpdateAnimations();
 
-        public void StartAttack() => Animator.PlayAnimation(AnimationType.Kick, true, Attack, EndAttack);
+        public void StartAttack(float damage)
+        {
+            _damage = damage;
+            Animator.PlayAnimation(AnimationType.Kick, true, Attack, EndAttack);
+        }
 
         public void SetDirection(Direction direction) => HorizontalMover.SetDirection(direction);
 
         private void Attack()
         {
-            Debug.Log("Attack");
+            Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRange, Targets);
+            
+            Debug.Log(hitPlayer);
+            if (hitPlayer == null) return;
+
+            if (hitPlayer.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(_damage);
         }
 
         private void EndAttack()

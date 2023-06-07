@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Stats>k__BackingField:
   - <Type>k__BackingField: 1
-    <Value>k__BackingField: 200
+    <Value>k__BackingField: 100
   - <Type>k__BackingField: 3
     <Value>k__BackingField: 8
   - <Type>k__BackingField: 4
     <Value>k__BackingField: 800
+  - <Type>k__BackingField: 5
+    <Value>k__BackingField: 30

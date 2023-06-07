@@ -5,6 +5,7 @@
         None = 0,
         Health = 1,
         Speed = 3,
-        JumpForce = 4
+        JumpForce = 4,
+        Attack = 5
     }
 }

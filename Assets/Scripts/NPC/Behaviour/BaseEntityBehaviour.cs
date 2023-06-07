@@ -1,4 +1,6 @@
-﻿using Core.Animation;
+﻿using System;
+using Battle;
+using Core.Animation;
 using Core.Movement.Controller;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -6,11 +8,14 @@ using UnityEngine.Rendering;
 namespace NPC.Behaviour
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class BaseEntityBehaviour : MonoBehaviour
+    public abstract class BaseEntityBehaviour : MonoBehaviour, IDamageable
     {
         [SerializeField] protected AnimationController Animator;
         [SerializeField] private SortingGroup _sortingGroup;
+        [SerializeField] protected Transform _attackPoint;
+        [SerializeField] protected float _attackRange;
 
+        
         protected Rigidbody2D Rigidbody;
         protected HorizontalMover HorizontalMover;
 
@@ -27,5 +32,9 @@ namespace NPC.Behaviour
             Animator.PlayAnimation(AnimationType.Idle, true);
             Animator.PlayAnimation(AnimationType.Run, HorizontalMover.IsMoving);
         }
+        
+        public event Action<float> DamageTaken;
+
+        public void TakeDamage(float damage) => DamageTaken?.Invoke(damage);
     }
 }

@@ -119,7 +119,7 @@ namespace NPC.Controller
             _meleeEntityBehaviour.SetDirection(_meleeEntityBehaviour.transform.position.x > _target.transform.position.x ? Direction.Left : Direction.Right);
             ResetMovement();
             _isAttacking = true;
-            _meleeEntityBehaviour.StartAttack();
+            _meleeEntityBehaviour.StartAttack(StatsController.GetStatValue(StatType.Attack));
             if (_searchCoroutine != null)
                 ProjectUpdater.Instance.StopCoroutine(_searchCoroutine);
 

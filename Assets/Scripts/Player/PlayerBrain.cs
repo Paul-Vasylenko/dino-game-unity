@@ -47,10 +47,10 @@ namespace Player
                 _playerEntity.Jump(StatsController.GetStatValue(StatType.JumpForce));
 
             if (IsKick)
-                _playerEntity.StartKick();
+                _playerEntity.StartKick(StatsController.GetStatValue(StatType.Attack));
 
             if (IsBite)
-                _playerEntity.StartBite();
+                _playerEntity.StartBite(StatsController.GetStatValue(StatType.Attack));
 
             foreach (var inputSource in _inputSources) inputSource.ResetOneTimeActions();
         }

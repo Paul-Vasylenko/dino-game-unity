@@ -1,26 +1,28 @@
+using System;
+using Battle;
 using Core.Animation;
 using Core.Movement.Controller;
 using Core.Movement.Data;
+using Drawing;
+using NPC.Behaviour;
 using StatsSystem;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(CapsuleCollider2D))]
-    public class PlayerEntity : MonoBehaviour
+    public class PlayerEntity : BaseEntityBehaviour, ILevelGraphicElement
     {
-        [Header("Animation")] [SerializeField] private AnimationController _animator;
-
-        [SerializeField] private HorizontalMovementData _horizontalMovementData;
+        [field: SerializeField] public PlayerStatsUIView StatsUIView { get; private set; }
         [SerializeField] private JumpData _jumpData;
-        private Collider2D _collider;
-
-        private HorizontalMover _horizontalMover;
-        private Jumper _jumper;
-
-        private Rigidbody2D _rigidbody;
         
+        [SerializeField] private LayerMask _targets;
+        [SerializeField] private Transform _bitePoint;
+
+        private Jumper _jumper;
+        private float _damage;
 
         private void Update()
         {
@@ -28,74 +30,76 @@ namespace Player
 
             if (_jumper.IsJumping) _jumper.UpdateJump();
         }
-
-        public void Initialize(IStatValueGiver statValueGiver)
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
-            _collider = GetComponent<CapsuleCollider2D>();
-            _horizontalMover = new HorizontalMover(_rigidbody, _horizontalMovementData, statValueGiver);
-            _jumper = new Jumper(_rigidbody, _jumpData, _collider, statValueGiver);
-        }
-
-        private void UpdateAnimations()
-        {
-            _animator.PlayAnimation(AnimationType.Idle, true);
-            _animator.PlayAnimation(AnimationType.Run, _horizontalMover.IsMoving);
-            _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
-        }
         
-        public void StartKick()
+        private void OnDrawGizmosSelected()
         {
-            if (!_animator.PlayAnimation(AnimationType.Kick, true))
+            if (_attackPoint == null)
                 return;
+            Gizmos.DrawWireSphere(_attackPoint.position, _attackRange);
+            if (_bitePoint == null)
+                return;
+            Gizmos.DrawWireSphere(_bitePoint.position, _attackRange);
+        }
 
-            _animator.ActionRequested += Kick;
-            _animator.AnimationEnded += EndKick;
+        public override void Initialize()
+        {
+            base.Initialize();
+            Rigidbody = GetComponent<Rigidbody2D>();
+            HorizontalMover = new VelocityMover(Rigidbody);
+            _jumper = new Jumper(Rigidbody, _jumpData);
+        }
+
+        protected override void UpdateAnimations()
+        {
+            base.UpdateAnimations();
+            Animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
+        }
+
+        public void StartKick(float damage)
+        {
+            _damage = damage;
+            if (!Animator.PlayAnimation(AnimationType.Kick, true, Kick, EndKick))
+                return;
         }
 
         private void Kick()
         {
-            Debug.Log("Kick");
+            Collider2D hitEnemy = Physics2D.OverlapCircle(_attackPoint.position, _attackRange, _targets);
+            
+            if (hitEnemy == null) return;
+
+            if (hitEnemy.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(_damage);
         }
-        
+
         private void EndKick()
         {
-            Debug.Log("END!");
-            _animator.ActionRequested -= Kick;
-            _animator.AnimationEnded -= EndKick;
-            _animator.PlayAnimation(AnimationType.Kick, false);
+            Animator.PlayAnimation(AnimationType.Kick, false, Kick, EndKick);
         }
         
-        public void StartBite()
+        public void StartBite(float damage)
         {
-            if (!_animator.PlayAnimation(AnimationType.Bite, true))
+            _damage = damage * 1.3f;
+            if (!Animator.PlayAnimation(AnimationType.Bite, true, Bite, EndBite))
                 return;
-
-            _animator.ActionRequested += Bite;
-            _animator.AnimationEnded += EndBite;
         }
 
         private void Bite()
         {
-            Debug.Log("Bite");
+            Collider2D hitEnemy = Physics2D.OverlapCircle(_bitePoint.position, _attackRange, _targets);
+            
+            if (hitEnemy == null) return;
+
+            if (hitEnemy.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(_damage);
         }
         
         private void EndBite()
         {
-            Debug.Log("END!");
-            _animator.ActionRequested -= Bite;
-            _animator.AnimationEnded -= EndBite;
-            _animator.PlayAnimation(AnimationType.Bite, false);
+            Animator.PlayAnimation(AnimationType.Bite, false, Bite, EndBite);
         }
 
-        public void MoveHorizontally(float direction)
+        public void Jump(float jumpForce)
         {
-            _horizontalMover.MoveHorizontally(direction);
-        }
-
-        public void Jump()
-        {
-            _jumper.Jump();
+            _jumper.Jump(jumpForce);
         }
     }
 }

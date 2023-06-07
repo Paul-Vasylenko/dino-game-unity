@@ -13,6 +13,8 @@ namespace UI.InventoryUI
     public class InventoryScreenView : ScreenView
     {
         [SerializeField] private Button _closeButton;
+        [SerializeField] private Button _statsButton;
+
         [SerializeField] private TMP_Text _potionsText;
         [SerializeField] private TMP_Text _moneyText;
 
@@ -26,10 +28,12 @@ namespace UI.InventoryUI
         [field: SerializeField] public Image MovingImage { get; private set; }
 
         public event Action CloseClicked;
+        public event Action InventoryClicked;
 
         private void Awake()
         {
             _closeButton.onClick.AddListener(() => CloseClicked?.Invoke());
+            _statsButton.onClick.AddListener(() => InventoryClicked?.Invoke());
             ItemSlots = GetComponentsInChildren<ItemSlot>().ToList();
             EquipmentSlots = GetComponentsInChildren<EquipmentSlot>().ToList();
         }

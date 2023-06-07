@@ -526,7 +526,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 813254977, guid: 5bfe8e0f746790043853dee6a40079b4, type: 3}
+  m_Sprite: {fileID: -501748487, guid: 65a5313a6f0dada4db939afe71d9c20c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -584,7 +584,7 @@ Animator:
   m_GameObject: {fileID: 7480222576233609006}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a101d5deee62fe5469df739167ab322a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 508e065ab9262254697b2b0939e8d40f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -649,7 +649,6 @@ MonoBehaviour:
   Animator: {fileID: 7480222576233609001}
   _sortingGroup: {fileID: 7480222576233608993}
   _attackPoint: {fileID: 1030827523714889802}
-  _bitePoint: {fileID: 4217186143767741680}
   _attackRange: 0.8
   _afterAttackDelay: 1
   _collider2D: {fileID: 7480222576233609003}

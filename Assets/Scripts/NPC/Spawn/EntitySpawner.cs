@@ -6,7 +6,6 @@ using NPC.Controller;
 using NPC.Data;
 using NPC.Enum;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace NPC.Spawn
 {
@@ -14,14 +13,14 @@ namespace NPC.Spawn
     {
         private readonly LevelDrawer _levelDrawer;
         private readonly DropGenerator _dropGenerator;
-        private readonly List<Entity> _entities;
+        public readonly List<Entity> Entities;
         private readonly EntitiesFactory _entitiesFactory;
 
         public EntitySpawner(LevelDrawer levelDrawer, DropGenerator dropGenerator)
         {
             _levelDrawer = levelDrawer;
             _dropGenerator = dropGenerator;
-            _entities = new List<Entity>();
+            Entities = new List<Entity>();
             var entitiesSpawnerDataStorage = Resources.Load<EntitiesSpawnerDataStorage>($"{nameof(EntitySpawner)}/{nameof(EntitiesSpawnerDataStorage)}");
             _entitiesFactory = new EntitiesFactory(entitiesSpawnerDataStorage);
         }
@@ -32,7 +31,7 @@ namespace NPC.Spawn
             entity.Died += RemoveEntity;
             entity.Died += SpawnRandomDrop;
             _levelDrawer.RegisterElement(entity);
-            _entities.Add(entity);
+            Entities.Add(entity);
         }
 
         private void SpawnRandomDrop(Entity entity)
@@ -42,14 +41,14 @@ namespace NPC.Spawn
 
         public void Dispose()
         {
-            foreach (var entity in _entities)
+            foreach (var entity in Entities)
                 DestroyEntity(entity);
-            _entities.Clear();
+            Entities.Clear();
         }
 
         private void RemoveEntity(Entity entity)
         {
-            _entities.Remove(entity);
+            Entities.Remove(entity);
             DestroyEntity(entity);
         }
 

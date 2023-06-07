@@ -20,6 +20,7 @@ namespace Player
         
         [SerializeField] private LayerMask _targets;
         [SerializeField] private Transform _bitePoint;
+        [SerializeField] private Transform _winPoint;
 
         private Jumper _jumper;
         private float _damage;
@@ -29,6 +30,15 @@ namespace Player
             UpdateAnimations();
 
             if (_jumper.IsJumping) _jumper.UpdateJump();
+
+            _winPoint.TryGetComponent(out Collider2D collider);
+            Collider2D[] colliders = new Collider2D[1];
+            int numColliders = collider.OverlapCollider(new ContactFilter2D(), colliders);
+
+            if (colliders[0] != null)
+            {
+                DestroyObject();
+            }
         }
         
         private void OnDrawGizmosSelected()

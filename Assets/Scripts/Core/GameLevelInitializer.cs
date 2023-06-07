@@ -74,7 +74,7 @@ namespace Core
                 _uiContext.CloseCurrentScreen();
 
             if (Input.GetKeyDown(KeyCode.Q))
-                _entitySpawner.SpawnEntity(EntityId.Rat, _spawnPoint.position);
+                _entitySpawner.SpawnEntity(EntityId.Enemy, _spawnPoint.position);
         }
     }
 }

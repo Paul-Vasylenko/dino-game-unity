@@ -35,7 +35,7 @@ namespace NPC.Spawn
 
             return entityId switch
             {
-                EntityId.Rat => new MeleeEntity(baseEntityBehaviour as MeleeEntityBehaviour, statsController),
+                EntityId.Enemy => new MeleeEntity(baseEntityBehaviour as MeleeEntityBehaviour, statsController),
                 _ => throw new NotImplementedException(),
             };
         }

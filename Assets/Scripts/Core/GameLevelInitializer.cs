@@ -65,7 +65,7 @@ namespace Core
             _levelDrawer = new LevelDrawer(LevelId.Level1);
             _levelDrawer.RegisterElement(_playerSystem.PlayerEntity);
 
-            _entitySpawner = new EntitySpawner(_levelDrawer);
+            _entitySpawner = new EntitySpawner(_levelDrawer, _dropGenerator);
         }
 
         private void Update()

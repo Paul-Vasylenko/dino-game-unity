@@ -21,6 +21,12 @@ namespace Items
             _itemsSystem = itemsSystem;
             ProjectUpdater.Instance.UpdateCalled += Update;
         }
+
+        public void DropRandomItem()
+        {
+            var rarity = GetDropRarity();
+            DropRandomItem(rarity);
+        }
         
         private void DropRandomItem(ItemRarity rarity)
         {

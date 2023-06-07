@@ -12,6 +12,8 @@ namespace Core.Movement.Controller
 
         public override void MoveHorizontally(float horizontalMovement)
         {
+            if (Rigidbody == null)
+                return;
             _movement.x = horizontalMovement;
             Vector2 velocity = Rigidbody.velocity;
             velocity.x = horizontalMovement;

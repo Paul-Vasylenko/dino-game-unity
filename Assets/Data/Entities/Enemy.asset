@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82e9e98856430d849885d96c1d5b1496, type: 3}
-  m_Name: Rat
+  m_Name: Enemy
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
   <Stats>k__BackingField:
@@ -20,4 +20,4 @@ MonoBehaviour:
     <Value>k__BackingField: 100
   - <Type>k__BackingField: 5
     <Value>k__BackingField: 20
-  <EntityBehaviourPrefab>k__BackingField: {fileID: 7480222576233608992, guid: ea1c4e0e5e7d57947b36c3470e097faf, type: 3}
+  <EntityBehaviourPrefab>k__BackingField: {fileID: 3566615254426621783, guid: ea1c4e0e5e7d57947b36c3470e097faf, type: 3}

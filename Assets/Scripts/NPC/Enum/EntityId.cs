@@ -3,6 +3,6 @@
     public enum EntityId
     {
         None = 0,
-        Rat = 1,
+        Enemy = 1,
     }
 }

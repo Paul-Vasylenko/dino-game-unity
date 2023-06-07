@@ -143588,6 +143588,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _bitePoint: {fileID: 2129218789}
+  _winPoint: {fileID: 2135489458}
 --- !u!95 &1250907289
 Animator:
   serializedVersion: 5

@@ -44,8 +44,11 @@ namespace UI
 
         public void CloseCurrentScreen()
         {
-            _currentController.Complete();
-            _currentController = null;
+            if (_currentController != null)
+            {
+                _currentController.Complete();
+                _currentController = null;
+            }
         }
 
         public void Dispose()
@@ -88,7 +91,8 @@ namespace UI
             return screenType switch
             {
                 ScreenType.Inventory =>
-                    new InventoryScreenAdapter(GetView<InventoryScreenView>(screenType), _data.Inventory, _data.RarityDescriptors),
+                    new InventoryScreenAdapter(GetView<InventoryScreenView>(screenType), _data.Inventory,
+                        _data.RarityDescriptors),
                 ScreenType.Stats => new StatsScreenAdapter(GetView<StatsScreenView>(screenType), _data.StatsController),
                 _ => throw new NullReferenceException()
             };

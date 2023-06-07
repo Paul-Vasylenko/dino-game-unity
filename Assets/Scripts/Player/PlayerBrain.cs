@@ -71,6 +71,7 @@ namespace Player
         
         public void Destroy(Entity died)
         {
+            
             died.Destroy();
         }
     }

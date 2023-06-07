@@ -49,5 +49,9 @@ namespace Core.Animation
             _animationEndAction?.Invoke();
             SetAnimation(AnimationType.Idle);
         }
+        protected void OnDeathAnimationEnded()
+        {
+            _animationEndAction?.Invoke();
+        }
     }
 }

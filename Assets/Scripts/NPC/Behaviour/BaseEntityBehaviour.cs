@@ -39,7 +39,8 @@ namespace NPC.Behaviour
 
         public void DestroyObject()
         {
-            Destroy(gameObject);
+            Animator.PlayAnimation(AnimationType.Death, true);
+            Destroy(gameObject, 1.4f);
         }
     }
 }

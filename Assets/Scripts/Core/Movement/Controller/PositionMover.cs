@@ -7,7 +7,7 @@ namespace Core.Movement.Controllers
     public class PositionMover : HorizontalMover
     {
         private Vector2 _destination;
-        public override bool IsMoving => _destination != Rigidbody.position;
+        public override bool IsMoving => _destination.x != Rigidbody.position.x;
 
         public PositionMover(Rigidbody2D rigidbody) : base(rigidbody) { }
 

@@ -111,6 +111,7 @@ namespace NPC.Controller
 
         private bool CheckIfCanAttack()
         {
+            if (_meleeEntityBehaviour == null) return false;
             var distance = _destination - _meleeEntityBehaviour.transform.position;
             if (Mathf.Abs(distance.x) > 0.2f || Mathf.Abs(distance.y) > 0.2f)
                 return false;

@@ -65,16 +65,18 @@ namespace Core
             _levelDrawer = new LevelDrawer(LevelId.Level1);
             _levelDrawer.RegisterElement(_playerSystem.PlayerEntity);
 
-            _entitySpawner = new EntitySpawner(_levelDrawer);
+            _entitySpawner = new EntitySpawner(_levelDrawer, _dropGenerator);
+            for (int i = 0; i < 3; i++)
+            {
+                var x = _spawnPoint.position.x + 10 * i;
+                _entitySpawner.SpawnEntity(EntityId.Enemy, new Vector2(x, _spawnPoint.position.y));
+            }
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
                 _uiContext.CloseCurrentScreen();
-
-            if (Input.GetKeyDown(KeyCode.Q))
-                _entitySpawner.SpawnEntity(EntityId.Enemy, _spawnPoint.position);
         }
     }
 }

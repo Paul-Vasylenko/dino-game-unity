@@ -41,13 +41,14 @@ namespace NPC.Behaviour
             Animator.PlayAnimation(AnimationType.Kick, true, Attack, EndAttack);
         }
 
+        
+
         public void SetDirection(Direction direction) => HorizontalMover.SetDirection(direction);
 
         private void Attack()
         {
             Collider2D hitPlayer = Physics2D.OverlapCircle(_attackPoint.position, _attackRange, Targets);
             
-            Debug.Log(hitPlayer);
             if (hitPlayer == null) return;
 
             if (hitPlayer.TryGetComponent(out IDamageable damageable)) damageable.TakeDamage(_damage);

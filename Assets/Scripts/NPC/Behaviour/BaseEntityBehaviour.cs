@@ -36,5 +36,16 @@ namespace NPC.Behaviour
         public event Action<float> DamageTaken;
 
         public void TakeDamage(float damage) => DamageTaken?.Invoke(damage);
+
+        public void DestroyObject()
+        {
+            Animator.PlayAnimation(AnimationType.Death, true);
+            Destroy(gameObject, 1.4f);
+        }
+        
+        public void PlayDeathAnimation()
+        {
+            Animator.PlayAnimation(AnimationType.Death, true);
+        }
     }
 }

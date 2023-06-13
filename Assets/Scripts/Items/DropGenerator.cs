@@ -19,7 +19,12 @@ namespace Items
             _playerEntity = playerEntity;
             _itemsDescriptors = itemDescriptors;
             _itemsSystem = itemsSystem;
-            ProjectUpdater.Instance.UpdateCalled += Update;
+        }
+
+        public void DropRandomItem()
+        {
+            var rarity = GetDropRarity();
+            DropRandomItem(rarity);
         }
         
         private void DropRandomItem(ItemRarity rarity)
@@ -44,12 +49,6 @@ namespace Items
                 > 97 and <= 100 => ItemRarity.Immortal,
                 _ => ItemRarity.Common
             };
-        }
-
-        private void Update()
-        {
-            if(Input.GetKeyUp(KeyCode.G))
-                DropRandomItem(GetDropRarity());
         }
     }
 }

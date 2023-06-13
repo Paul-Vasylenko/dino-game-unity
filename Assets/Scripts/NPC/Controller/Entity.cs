@@ -14,7 +14,6 @@ namespace NPC.Controller
 
         public event Action<Entity> Died;
 
-        public event Action<ILevelGraphicElement> VerticalPositionChanged;
         private float _currentHp;
 
         protected Entity(BaseEntityBehaviour entityBehaviour, StatsController statsController)
@@ -47,6 +46,12 @@ namespace NPC.Controller
         {
             StatsController.Dispose();
             UnsubscribeFromEvents();
+        }
+
+        public void Destroy()
+        {
+            _entityBehaviour.PlayDeathAnimation();
+            _entityBehaviour.DestroyObject();
         }
     }
 }

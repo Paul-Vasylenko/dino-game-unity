@@ -7,5 +7,6 @@
         Jump = 2,
         Kick = 3,
         Bite = 4,
+        Death = 5,
     }
 }
